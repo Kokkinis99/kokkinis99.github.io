@@ -1,1 +1,54 @@
-Hello Mom
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>George Kokkinis — Design Engineer</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme') || 
+          (window.matchMedia('(prefers-color-scheme: dark)').matches 
+            ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+
+  <body>
+    <main class="container">
+      <section class="info">
+        <div class="header">
+          <a href="." class="home-link heading-sm" aria-label="Home">George Kokkinis</a>
+          <div class="options">
+            <button class="icon-button" id="theme-toggle" aria-label="Toggle theme">
+              <i class="icon" data-lucide="moon" id="theme-icon"></i>
+            </button>
+            <button class="icon-button" id="email-button" aria-label="Send me an email">
+              <i class="icon" data-lucide="mail" id="email-icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <p class="career-info heading-sm">Design Engineer<br/>5+ years</p>
+
+        <p class="description body">
+          Currently developing everything UI related at Covve.<br/>
+          Feel free to reach out! If I’m late to reply, I’m probably at the gym or working on my car.
+        </p>
+      </section>
+
+      <section class="main">
+        <button class="main-button" aria-label="Kodon">
+          <span class="body">Kodon</span>
+          <p class="body">A Sonner-inspired toast component for Angular, built on top of ng-primitives.</p>
+        </button>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
