@@ -249,4 +249,6 @@ span {
 
 p {
   color: var(--color-text-secondary);
+  text-align: start;
+  text-wrap: pretty;
 }
