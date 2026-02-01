@@ -223,12 +223,12 @@ button:active {
   flex-direction: column;
   gap: 0.625rem;
 
+  text-decoration: none;
+
   cursor: pointer;
   padding: 10px;
   border-radius: 8px;
-  transition: 
-    transform var(--duration-fast) var(--ease-out-quart),
-    background-color var(--duration-standard) ease;
+  transition: background-color var(--duration-standard) var(--ease-out-quart);
 }
 
 @media (hover: hover) and (pointer: fine) {
