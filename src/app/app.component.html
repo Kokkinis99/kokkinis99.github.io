@@ -1,0 +1,44 @@
+<main class="container">
+  <section class="info">
+    <header class="header">
+      <a href="." class="home-link heading-sm" aria-label="Home">
+        George Kokkinis
+      </a>
+      <div class="options">
+        <app-icon-button
+          [icon]="theme() === 'dark' ? sunIcon : moonIcon"
+          ariaLabel="Toggle theme"
+          [animate]="themeIconAnimating()"
+          (clicked)="toggleTheme()"
+        />
+        <app-icon-button
+          [icon]="mailIcon"
+          ariaLabel="Send me an email"
+          (clicked)="sendEmail()"
+        />
+      </div>
+    </header>
+
+    <p class="career-info heading-sm">
+      Design Engineer<br />
+      5+ years
+    </p>
+
+    <p class="description body">
+      Currently developing everything UI related at
+      <a href="https://covve.com" target="_blank">Covve</a>.<br />
+      Feel free to reach out! If I'm late to reply, I'm probably at the
+      <app-gym-tooltip>gym</app-gym-tooltip>, working on my <app-car-cards>car</app-car-cards>, watching <app-movie-cards>movies</app-movie-cards>, or deep in music.
+    </p>
+  </section>
+
+  <section class="main">
+    @for (project of projects(); track project.title) {
+      <app-project-card
+        [title]="project.title"
+        [description]="project.description"
+        [href]="project.href"
+      />
+    }
+  </section>
+</main>

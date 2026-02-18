@@ -1,0 +1,110 @@
+<span
+  #trigger
+  class="gym-trigger"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  (focus)="onMouseEnter()"
+  (blur)="onMouseLeave()"
+  tabindex="0"
+>
+  <ng-content />
+</span>
+
+<div
+  class="tooltip"
+  [class.tooltip-visible]="visible()"
+  [class.tooltip-align-left]="alignLeft()"
+  [class.tooltip-align-right]="alignRight()"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  role="tooltip"
+  [attr.aria-hidden]="!visible()"
+>
+  @if (loading()) {
+    <div class="tooltip-loading">Loading...</div>
+  } @else if (data()) {
+    <div class="tooltip-columns">
+      <!-- Yesterday -->
+      @if (data()!.yesterday; as yesterday) {
+        <div class="tooltip-day">
+          <div class="tooltip-header">
+            <span class="tooltip-date body">{{ yesterday.date }}</span>
+            <span class="tooltip-rating body-sm">{{ yesterday.rating }}</span>
+          </div>
+
+          <div class="tooltip-content">
+            <div class="tooltip-row">
+              <i-lucide [img]="scaleIcon" [size]="16" class="tooltip-icon" />
+              <span class="tooltip-label body-sm">Weight</span>
+              <span class="tooltip-value body-sm">{{ yesterday.weight }} kg</span>
+              <span class="tooltip-sub body-sm">&#64;{{ yesterday.weighTime }}</span>
+            </div>
+
+            <div class="tooltip-row">
+              <i-lucide [img]="dumbbellIcon" [size]="16" class="tooltip-icon" />
+              <span class="tooltip-label body-sm">Training</span>
+              <span class="tooltip-value body-sm">{{ yesterday.training }}</span>
+            </div>
+
+            <div class="tooltip-row">
+              <i-lucide [img]="moonIcon" [size]="16" class="tooltip-icon" />
+              <span class="tooltip-label body-sm">Sleep</span>
+              <span class="tooltip-value body-sm">{{ yesterday.sleepDuration }}h</span>
+              <span class="tooltip-sub body-sm">{{ yesterday.sleepStart }} - {{ yesterday.sleepEnd }}</span>
+            </div>
+
+            <div class="tooltip-row">
+              <i-lucide [img]="footprintsIcon" [size]="16" class="tooltip-icon" />
+              <span class="tooltip-label body-sm">Steps</span>
+              <span class="tooltip-value body-sm">{{ yesterday.steps }}</span>
+              <span class="tooltip-sub body-sm">/10000</span>
+            </div>
+          </div>
+        </div>
+      }
+
+      <div class="tooltip-separator"></div>
+
+      <!-- Today -->
+      @if (data()!.today; as today) {
+        <div class="tooltip-day">
+          <div class="tooltip-header">
+            <span class="tooltip-date body">{{ today.date }}</span>
+            <span class="tooltip-rating body-sm">{{ today.rating }}</span>
+          </div>
+
+          <div class="tooltip-content">
+            <div class="tooltip-row">
+              <i-lucide [img]="scaleIcon" [size]="16" class="tooltip-icon" />
+              <span class="tooltip-label body-sm">Weight</span>
+              <span class="tooltip-value body-sm">{{ today.weight }} kg</span>
+              <span class="tooltip-sub body-sm">&#64;{{ today.weighTime }}</span>
+            </div>
+
+            <div class="tooltip-row">
+              <i-lucide [img]="dumbbellIcon" [size]="16" class="tooltip-icon" />
+              <span class="tooltip-label body-sm">Training</span>
+              <span class="tooltip-value body-sm">{{ today.training }}</span>
+            </div>
+
+            <div class="tooltip-row">
+              <i-lucide [img]="moonIcon" [size]="16" class="tooltip-icon" />
+              <span class="tooltip-label body-sm">Sleep</span>
+              <span class="tooltip-value body-sm">{{ today.sleepDuration }}h</span>
+              <span class="tooltip-sub body-sm">{{ today.sleepStart }} - {{ today.sleepEnd }}</span>
+            </div>
+
+            <div class="tooltip-row">
+              <i-lucide [img]="footprintsIcon" [size]="16" class="tooltip-icon" />
+              <span class="tooltip-label body-sm">Steps</span>
+              <span class="tooltip-value body-sm">{{ today.steps }}</span>
+              <span class="tooltip-sub body-sm">/10000</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="tooltip-empty">No data available</div>
+  }
+</div>

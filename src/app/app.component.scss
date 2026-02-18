@@ -1,0 +1,47 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-top: 8rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.home-link {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem;
+}
+
+.career-info {
+  color: var(--color-text-secondary);
+}
+
+.description {
+  color: var(--color-text);
+  margin-top: 0.625rem;
+  text-wrap: pretty;
+  max-width: 400px;
+}
+
+.main {
+  margin-top: 4rem;
+  width: 100%;
+}

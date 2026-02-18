@@ -1,0 +1,37 @@
+<span
+  #trigger
+  class="car-cards-trigger"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  (focus)="onMouseEnter()"
+  (blur)="onMouseLeave()"
+  tabindex="0"
+>
+  <ng-content />
+</span>
+
+<div
+  class="tooltip"
+  [class.tooltip-visible]="visible()"
+  [class.tooltip-align-left]="alignLeft()"
+  [class.tooltip-align-right]="alignRight()"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  role="tooltip"
+  [attr.aria-hidden]="!visible()"
+>
+  @for (carCard of carCards(); track carCard.title) {
+    <div class="tooltip-item">
+      <div
+        class="tooltip-image"
+        role="img"
+        [attr.aria-label]="carCard.title"
+        [style.background-image]="'url(' + carCard.image + ')'"
+      ></div>
+      <div class="tooltip-content">
+        <span class="tooltip-title heading-sm">{{ carCard.title }}</span>
+        <p class="tooltip-description body-sm">{{ carCard.description }}</p>
+      </div>
+    </div>
+  }
+</div>

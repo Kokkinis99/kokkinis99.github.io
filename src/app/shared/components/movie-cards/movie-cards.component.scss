@@ -1,0 +1,122 @@
+:host {
+  position: relative;
+  display: inline;
+}
+
+.movie-cards-trigger {
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  outline: none;
+  border-radius: 2px;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-text-secondary);
+    outline-offset: 2px;
+  }
+}
+
+.tooltip {
+  display: flex;
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+  visibility: hidden;
+  pointer-events: none;
+
+  // Delay visibility: stagger (150ms) + animation duration (150ms) = 300ms
+  transition: visibility 0ms 300ms;
+}
+
+.tooltip-visible {
+  visibility: visible;
+  pointer-events: auto;
+
+  // No delay on entry - show immediately
+  transition: visibility 0ms;
+
+  .tooltip-item {
+    opacity: 1;
+    transform: translateY(0);
+
+    // Entry: transform with spring bounce, opacity delayed
+    transition:
+      transform var(--ease-duration) var(--ease-spring),
+      opacity var(--duration-standard) var(--ease-out-quart);
+
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) {
+        transition-delay: #{($i - 1) * 50}ms, #{($i - 1) * 50 + 30}ms;
+      }
+    }
+  }
+}
+
+.tooltip-hover-enabled .tooltip-item {
+  pointer-events: auto;
+  transform-origin: bottom center;
+
+  @for $i from 1 through 3 {
+    &:nth-child(#{$i}):hover {
+      transform: rotate(#{-2.5 * (4 - $i)}deg) translateX(#{-4 * (4 - $i)}px) translateY(-10px);
+    }
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+  }
+
+  &.pressed {
+    scale: 0.95;
+    transition: scale var(--duration-fast) var(--ease-out-quart);
+  }
+}
+
+.tooltip-item {
+  position: relative;
+  width: 140px;
+  aspect-ratio: 2/3;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-inline-start: -75px;
+  padding: 5px;
+  background: var(--color-bg);
+  pointer-events: none;
+
+  opacity: 0;
+  transform: translateY(50%);
+
+  // Exit: both start together, opacity completes before card reaches trigger
+  transition:
+    transform var(--duration-standard) var(--ease-out-quart),
+    opacity var(--duration-micro) var(--ease-out-quart),
+    scale var(--duration-micro) var(--ease-out-quart);
+
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+  &:first-child {
+    margin-inline-start: 0;
+  }
+
+  // Exit stagger: last card first (card 4 = 0ms, card 1 = 150ms)
+  @for $i from 1 through 4 {
+    &:nth-child(#{$i}) {
+      z-index: #{$i};
+      transition-delay: #{(4 - $i) * 50}ms;
+    }
+  }
+
+  cursor: pointer;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+}

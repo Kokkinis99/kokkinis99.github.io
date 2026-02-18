@@ -1,0 +1,30 @@
+<span
+  #trigger
+  class="movie-cards-trigger"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  (focus)="onMouseEnter()"
+  (blur)="onMouseLeave()"
+  tabindex="0"
+>
+  <ng-content />
+</span>
+<div
+  class="tooltip"
+  [class.tooltip-visible]="visible()"
+  [class.tooltip-hover-enabled]="hoverEnabled()"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  role="tooltip"
+  [attr.aria-hidden]="!visible()"
+>
+  @for (movieCard of movieCards(); track movieCard.posterUrl; let i = $index) {
+    <div
+      class="tooltip-item"
+      [class.pressed]="pressedIndex() === i"
+      (click)="onCardClick(i, movieCard.letterboxdUrl)"
+    >
+      <img [src]="movieCard.posterUrl" [alt]="movieCard.title" />
+    </div>
+  }
+</div>
