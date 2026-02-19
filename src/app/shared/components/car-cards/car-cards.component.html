@@ -15,13 +15,23 @@
   [class.tooltip-visible]="visible()"
   [class.tooltip-align-left]="alignLeft()"
   [class.tooltip-align-right]="alignRight()"
+  [class.tooltip-expanding]="expanding()"
   (mouseenter)="onMouseEnter()"
   (mouseleave)="onMouseLeave()"
-  role="tooltip"
+  role="menu"
   [attr.aria-hidden]="!visible()"
 >
-  @for (carCard of carCards(); track carCard.title) {
-    <div class="tooltip-item">
+  @for (carCard of carCards(); track carCard.title; let i = $index) {
+    <div
+      class="tooltip-item"
+      [class.tooltip-item-selected]="expandingIndex() === i"
+      [class.tooltip-item-sibling]="expandingIndex() !== null && expandingIndex() !== i"
+      [class.tooltip-item-expanding]="expanding()"
+      [style.--expand-transform]="expandingIndex() === i ? expandTransform() : 'scale(1)'"
+      (click)="onCardClick(i, $event)"
+      role="menuitem"
+      tabindex="0"
+    >
       <div
         class="tooltip-image"
         role="img"

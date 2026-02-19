@@ -1,11 +1,15 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ViewChild } from '@angular/core';
 import { LucideAngularModule, Moon, Sun, Mail } from 'lucide-angular';
 import { ThemeService } from './core/services/theme.service';
 import { IconButtonComponent } from './shared/components/icon-button/icon-button.component';
 import { ProjectCardComponent } from './shared/components/project-card/project-card.component';
 import { GymTooltipComponent } from './shared/components/gym-tooltip/gym-tooltip.component';
-import { CarCardsComponent } from './shared/components/car-cards/car-cards.component';
+import {
+  CarCard,
+  CarCardsComponent
+} from './shared/components/car-cards/car-cards.component';
 import { MovieCardsComponent } from './shared/components/movie-cards/movie-cards.component';
+import { ExpandedCardComponent } from './shared/components/expanded-card/expanded-card.component';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +20,8 @@ import { MovieCardsComponent } from './shared/components/movie-cards/movie-cards
     ProjectCardComponent,
     GymTooltipComponent,
     CarCardsComponent,
-    MovieCardsComponent
+    MovieCardsComponent,
+    ExpandedCardComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -24,8 +29,12 @@ import { MovieCardsComponent } from './shared/components/movie-cards/movie-cards
 export class AppComponent {
   private readonly themeService = inject(ThemeService);
 
+  @ViewChild(CarCardsComponent) carCardsRef!: CarCardsComponent;
+
   readonly theme = this.themeService.theme;
   readonly themeIconAnimating = signal(false);
+
+  readonly expandedCard = signal<CarCard | null>(null);
 
   // Icons
   readonly moonIcon = Moon;
@@ -53,5 +62,14 @@ export class AppComponent {
 
   sendEmail(): void {
     window.location.href = 'mailto:george@kokkin.is';
+  }
+
+  onCarCardSelected(card: CarCard): void {
+    this.expandedCard.set(card);
+  }
+
+  onExpandedCardClosed(): void {
+    this.expandedCard.set(null);
+    this.carCardsRef?.resetExpansion();
   }
 }

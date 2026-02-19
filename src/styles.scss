@@ -26,6 +26,8 @@
   --color-text-secondary: hsl(0 0% 44%);
   --color-text-link: hsl(0 0% 60%);
   --color-hover: hsl(0 0% 4% / 0.1);
+  --color-backdrop: hsl(0 0% 98% / 0.1);
+  --color-backdrop-closing: hsl(0 0% 98% / 0);
 
   // Animation durations
   --duration-micro: 50ms;
@@ -52,6 +54,9 @@
   // Easing: spring (for bounce/overshoot)
   --ease-duration: 500ms;
   --ease-spring: linear(0, 0.387 6.5%, 0.68 13.5%, 0.888 21.2%, 0.962 25.4%, 1.017 29.8%, 1.066 37%, 1.08 45.5%, 1.07 53%, 1.011 78.3%, 1);
+
+  --ease-duration-soft: 750ms;
+  --ease-spring-soft: linear(0, 0.218 4.3%, 0.453 9%, 0.671 14.3%, 0.846 20.5%, 0.961 28%, 1.025 37%, 1.036 48%, 1.016 62%, 1.004 78%, 1);
 }
 
 [data-theme='dark'] {
@@ -119,6 +124,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text-link) transparent;
 }
 
 html,

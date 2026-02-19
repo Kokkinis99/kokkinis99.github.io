@@ -1,0 +1,32 @@
+<div
+  class="expanded-card-backdrop"
+  [class.expanded-card-backdrop-visible]="ready()"
+  [class.expanded-card-backdrop-closing]="closing()"
+  (click)="close()"
+></div>
+
+<div
+  class="expanded-card"
+  [class.expanded-card-ready]="ready()"
+  [class.expanded-card-closing]="closing()"
+  role="dialog"
+  aria-modal="true"
+>
+  <div
+    class="expanded-card-image"
+    role="img"
+    [attr.aria-label]="card().title"
+    [style.background-image]="'url(' + card().image + ')'"
+  ></div>
+  @if (ready() && card().image2) {
+    <div class="expanded-card-image image-2" role="img" [attr.aria-label]="card().title" [style.background-image]="'url(' + card().image2 + ')'" ></div>
+  }
+  <div class="expanded-card-content">
+    <span class="expanded-card-title heading-sm">{{ card().title }}</span>
+    @if (ready()) {
+      <p class="expanded-card-content-text body-sm">
+        {{ card().content }}
+      </p>
+    }
+  </div>
+</div>

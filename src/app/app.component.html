@@ -28,7 +28,7 @@
       Currently developing everything UI related at
       <a href="https://covve.com" target="_blank">Covve</a>.<br />
       Feel free to reach out! If I'm late to reply, I'm probably at the
-      <app-gym-tooltip>gym</app-gym-tooltip>, working on my <app-car-cards>car</app-car-cards>, watching <app-movie-cards>movies</app-movie-cards>, or deep in music.
+      <app-gym-tooltip>gym</app-gym-tooltip>, working on my <app-car-cards (cardSelected)="onCarCardSelected($event)">car</app-car-cards>, watching <app-movie-cards>movies</app-movie-cards>, or deep in music.
     </p>
   </section>
 
@@ -42,3 +42,11 @@
     }
   </section>
 </main>
+
+@if (expandedCard()) {
+  <app-expanded-card
+    [card]="expandedCard()!"
+    (closed)="onExpandedCardClosed()"
+  />
+}
+

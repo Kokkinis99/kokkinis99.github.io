@@ -15,6 +15,12 @@
   }
 }
 
+/* ─────────────────────────────────────────────────────────
+ * EXPANSION TIMING (matches TypeScript TIMING object)
+ * ───────────────────────────────────────────────────────── */
+$expand-duration: 500ms;
+$sibling-fade-duration: 250ms;
+
 .tooltip {
   position: absolute;
   bottom: calc(100% + 12px);
@@ -33,7 +39,7 @@
   // Exit: opacity first, then transform (both after cards collapse)
   transition:
     opacity var(--duration-standard) var(--ease-out-quart) var(--duration-fast),
-    transform var(--duration-standard) var(--ease-out-quart)
+    transform var(--ease-duration-soft) var(--ease-spring-soft)
       calc(var(--duration-fast) + var(--duration-micro)),
     visibility 0ms calc(var(--duration-fast) + var(--duration-standard));
 }
@@ -47,8 +53,20 @@
   // Entry: transform first, opacity follows with small delay
   transition:
     opacity var(--duration-standard) var(--ease-out-quart) var(--duration-micro),
-    transform var(--duration-standard) var(--ease-out-quart),
+    transform var(--ease-duration-soft) var(--ease-spring-soft),
     visibility 0ms;
+}
+
+.tooltip-expanding {
+  // During expansion, keep tooltip visible and disable pointer events on container
+  pointer-events: none;
+
+  // When expansion complete and visible is removed, hide immediately (no exit animation)
+  &:not(.tooltip-visible) {
+    opacity: 0;
+    visibility: hidden;
+    transition: none;
+  }
 }
 
 .tooltip-align-left {
@@ -71,6 +89,7 @@
 }
 
 .tooltip-item {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 180px;
@@ -79,14 +98,14 @@
   background: var(--color-bg);
   border: 1px solid var(--color-hover);
   border-radius: 8px;
+  overflow: hidden;
 
   box-shadow:
     0 4px 6px -1px rgb(0 0 0 / 0.1),
     0 2px 4px -2px rgb(0 0 0 / 0.1);
   transition: transform var(--duration-fast) var(--ease-out-quart);
 
-  // Tooltip item should start animating just before tooltip is finished animating
-  --tooltip-item-delay: var(--duration-fast);
+  --tooltip-item-delay: var(--duration-slow);
 
   &:hover {
     cursor: pointer;
@@ -97,6 +116,9 @@
     transform: scale(0.95);
   }
 
+  // ─────────────────────────────────────────────────────────
+  // SIBLING CARDS (left and right fanned cards)
+  // ─────────────────────────────────────────────────────────
   &:nth-of-type(2) {
     position: absolute;
     left: 0;
@@ -110,6 +132,7 @@
       top var(--duration-fast) var(--ease-out-quart),
       transform var(--duration-fast) var(--ease-out-quart);
 
+    // Fanned position when visible (including during expansion)
     .tooltip-visible & {
       left: -80px;
       top: 10px;
@@ -117,19 +140,21 @@
 
       // Entry: delay so cards fan out after tooltip appears
       transition:
-        left var(--duration-fast) var(--ease-out-quart) var(--tooltip-item-delay),
-        top var(--duration-fast) var(--ease-out-quart) var(--tooltip-item-delay),
-        transform var(--duration-fast) var(--ease-out-quart) var(--tooltip-item-delay);
+        left var(--ease-duration) var(--ease-spring) var(--tooltip-item-delay),
+        top var(--ease-duration) var(--ease-spring) var(--tooltip-item-delay),
+        transform var(--ease-duration) var(--ease-spring)
+          var(--tooltip-item-delay);
+    }
 
-      &:hover {
-        left: -120px;
-        top: 0;
-        transform: rotate(-15deg) scale(1.05);
-      }
+    // Hover only when not expanding
+    .tooltip-visible:not(.tooltip-expanding) &:hover {
+      left: -120px;
+      top: 0;
+      transform: rotate(-15deg) scale(1.05);
+    }
 
-      &:active {
-        transform: rotate(-15deg) scale(0.95);
-      }
+    .tooltip-visible:not(.tooltip-expanding) &:active {
+      transform: rotate(-15deg) scale(0.95);
     }
   }
 
@@ -146,6 +171,7 @@
       top var(--duration-fast) var(--ease-out-quart),
       transform var(--duration-fast) var(--ease-out-quart);
 
+    // Fanned position when visible (including during expansion)
     .tooltip-visible & {
       right: -80px;
       top: 10px;
@@ -153,19 +179,70 @@
 
       // Entry: delay so cards fan out after tooltip appears
       transition:
-        right var(--duration-fast) var(--ease-out-quart) var(--tooltip-item-delay),
-        top var(--duration-fast) var(--ease-out-quart) var(--tooltip-item-delay),
-        transform var(--duration-fast) var(--ease-out-quart) var(--tooltip-item-delay);
+        right var(--ease-duration) var(--ease-spring) var(--tooltip-item-delay),
+        top var(--ease-duration) var(--ease-spring) var(--tooltip-item-delay),
+        transform var(--ease-duration) var(--ease-spring)
+          var(--tooltip-item-delay);
+    }
 
-      &:hover {
-        right: -120px;
-        top: 0;
-        transform: rotate(15deg) scale(1.05);
-      }
+    // Hover only when not expanding
+    .tooltip-visible:not(.tooltip-expanding) &:hover {
+      right: -120px;
+      top: 0;
+      transform: rotate(15deg) scale(1.05);
+    }
 
-      &:active {
-        transform: rotate(15deg) scale(0.95);
-      }
+    .tooltip-visible:not(.tooltip-expanding) &:active {
+      transform: rotate(15deg) scale(0.95);
+    }
+  }
+
+  // ─────────────────────────────────────────────────────────
+  // EXPANSION STATES (all happen simultaneously on click)
+  // Override the delayed .tooltip-visible transitions
+  // ─────────────────────────────────────────────────────────
+
+  // Siblings: collapse (fade out + scale down)
+  &.tooltip-item-sibling.tooltip-item-expanding {
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform $sibling-fade-duration var(--ease-out-quart),
+      opacity $sibling-fade-duration var(--ease-out-quart),
+      left $sibling-fade-duration var(--ease-out-quart),
+      right $sibling-fade-duration var(--ease-out-quart),
+      top $sibling-fade-duration var(--ease-out-quart);
+
+    &:nth-of-type(2) {
+      left: 0;
+      top: 0;
+      transform: rotate(0) scale(0.9);
+    }
+
+    &:nth-of-type(3) {
+      right: 0;
+      top: 0;
+      transform: rotate(0) scale(0.9);
+    }
+  }
+
+  // Selected card: move to viewport center + scale up
+  // Use .tooltip-expanding parent for higher specificity over .tooltip-visible
+  .tooltip-expanding &.tooltip-item-selected.tooltip-item-expanding {
+    cursor: default;
+    z-index: 9999;
+    // Reset positioning - let transform handle everything
+    left: 0;
+    top: 0;
+    transform: var(--expand-transform);
+    // Shadow fades out during animation so handoff to expanded-card is seamless
+    box-shadow: none;
+    transition:
+      transform var(--ease-duration-soft) var(--ease-spring-soft),
+      box-shadow 600ms var(--ease-out-quart);
+
+    &:hover {
+      transform: var(--expand-transform);
     }
   }
 }
@@ -184,6 +261,15 @@
   text-wrap: pretty;
 
   user-select: none;
+  padding-inline: 5px;
+
+  .tooltip-title {
+    color: var(--color-text);
+  }
+
+  .tooltip-description {
+    color: var(--color-text-secondary);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
