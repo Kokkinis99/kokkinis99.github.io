@@ -1,4 +1,4 @@
-import { Component, inject, signal, ViewChild } from '@angular/core';
+import { Component, computed, inject, signal, ViewChild } from '@angular/core';
 import { LucideAngularModule, Moon, Sun, Mail } from 'lucide-angular';
 import { ThemeService } from './core/services/theme.service';
 import { IconButtonComponent } from './shared/components/icon-button/icon-button.component';
@@ -10,6 +10,14 @@ import {
 } from './shared/components/car-cards/car-cards.component';
 import { MovieCardsComponent } from './shared/components/movie-cards/movie-cards.component';
 import { ExpandedCardComponent } from './shared/components/expanded-card/expanded-card.component';
+import { MoodTuneDialogComponent } from './shared/components/mood-tune-dialog/mood-tune-dialog.component';
+
+type Project = {
+  title: string;
+  description: string;
+  href: string;
+  opensDialog?: boolean;
+};
 
 @Component({
   selector: 'app-root',
@@ -21,7 +29,8 @@ import { ExpandedCardComponent } from './shared/components/expanded-card/expande
     GymTooltipComponent,
     CarCardsComponent,
     MovieCardsComponent,
-    ExpandedCardComponent
+    ExpandedCardComponent,
+    MoodTuneDialogComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -35,6 +44,7 @@ export class AppComponent {
   readonly themeIconAnimating = signal(false);
 
   readonly expandedCard = signal<CarCard | null>(null);
+  readonly moodTuneDialogOpen = signal(false);
 
   // Icons
   readonly moonIcon = Moon;
@@ -42,7 +52,7 @@ export class AppComponent {
   readonly mailIcon = Mail;
 
   // Projects data - easy to extend later
-  readonly projects = signal([
+  readonly projects = signal<Project[]>([
     {
       title: 'Kodon',
       description:
@@ -50,7 +60,15 @@ export class AppComponent {
         'built on top of ng-primitives.',
       href: 'https://kodon.kokkin.is',
     },
+    {
+      title: 'MoodTune',
+      description: 'A mood-based music recommendation app.',
+      href: 'https://moodtune.kokkin.is',
+      opensDialog: true,
+    },
   ]);
+
+  readonly projectsReversed = computed(() => [...this.projects()].reverse());
 
   toggleTheme(): void {
     this.themeIconAnimating.set(true);
@@ -71,5 +89,13 @@ export class AppComponent {
   onExpandedCardClosed(): void {
     this.expandedCard.set(null);
     this.carCardsRef?.resetExpansion();
+  }
+
+  openMoodTuneDialog(): void {
+    this.moodTuneDialogOpen.set(true);
+  }
+
+  closeMoodTuneDialog(): void {
+    this.moodTuneDialogOpen.set(false);
   }
 }

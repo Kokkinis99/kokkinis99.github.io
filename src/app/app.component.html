@@ -33,11 +33,13 @@
   </section>
 
   <section class="main">
-    @for (project of projects(); track project.title) {
+    @for (project of projectsReversed(); track project.title) {
       <app-project-card
         [title]="project.title"
         [description]="project.description"
         [href]="project.href"
+        [useDialog]="!!project.opensDialog"
+        (dialogOpen)="openMoodTuneDialog()"
       />
     }
   </section>
@@ -47,6 +49,12 @@
   <app-expanded-card
     [card]="expandedCard()!"
     (closed)="onExpandedCardClosed()"
+  />
+}
+
+@if (moodTuneDialogOpen()) {
+  <app-mood-tune-dialog
+    (closed)="closeMoodTuneDialog()"
   />
 }
 

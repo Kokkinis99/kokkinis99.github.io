@@ -1,0 +1,42 @@
+<div
+  class="mood-tune-dialog-backdrop"
+  [class.mood-tune-dialog-backdrop--ready]="panelReady()"
+  [class.mood-tune-dialog-backdrop--closing]="closing()"
+  (click)="close()"
+  aria-hidden="true"
+></div>
+
+<div
+  class="mood-tune-dialog-panel"
+  [class.mood-tune-dialog-panel--ready]="panelReady()"
+  [class.mood-tune-dialog-panel--closing]="closing()"
+  role="dialog"
+  aria-modal="true"
+  aria-label="MoodTune — select your mood"
+>
+  @for (trigger of triggers; track trigger.title; let i = $index) {
+    <button
+      type="button"
+      class="mood-tune-dialog-trigger-button"
+      [attr.aria-label]="'Select ' + trigger.title + ' mood'"
+      [style.--i]="i"
+      (click)="onTriggerSelect($event, trigger, i)"
+    >
+      <img
+        [src]="trigger.backgroundUrl"
+        [alt]=""
+        class="mood-tune-dialog-trigger-image"
+        draggable="false"
+      />
+    </button>
+  }
+</div>
+
+@if (expandingCircle(); as circle) {
+  <div
+    class="mood-tune-circle"
+    [style.--cx]="circle.x + 'px'"
+    [style.--cy]="circle.y + 'px'"
+    [style.background]="circle.color"
+  ></div>
+}

@@ -1,13 +1,31 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-project-card',
   standalone: true,
   template: `
-    <a [href]="href()" target="_blank" class="project-card" [attr.aria-label]="title()">
-      <span class="body title">{{ title() }}</span>
-      <p class="body description">{{ description() }}</p>
-    </a>
+    @if (useDialog()) {
+      <button
+        type="button"
+        class="project-card"
+        [attr.aria-label]="title()"
+        (click)="dialogOpen.emit()"
+      >
+        <span class="body title">{{ title() }}</span>
+        <p class="body description">{{ description() }}</p>
+      </button>
+    } @else {
+      <a
+        [href]="href()"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="project-card"
+        [attr.aria-label]="title()"
+      >
+        <span class="body title">{{ title() }}</span>
+        <p class="body description">{{ description() }}</p>
+      </a>
+    }
   `,
   styles: `
     .project-card {
@@ -23,7 +41,12 @@ import { Component, input } from '@angular/core';
       cursor: pointer;
       padding: 10px;
       border-radius: 8px;
-      transition: background-color var(--duration-standard) var(--ease-out-quart);
+      transition: background-color var(--duration-standard) var(--ease-out-quart), transform var(--duration-standard) var(--ease-out-quart);
+    }
+
+    button.project-card {
+      font: inherit;
+      text-align: inherit;
     }
 
     @media (hover: hover) and (pointer: fine) {
@@ -53,4 +76,6 @@ export class ProjectCardComponent {
   title = input.required<string>();
   description = input.required<string>();
   href = input.required<string>();
+  useDialog = input(false);
+  readonly dialogOpen = output<void>();
 }

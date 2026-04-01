@@ -1,0 +1,144 @@
+:host {
+  /* Keep in sync with panel `translateY(calc(100% + …))` below. */
+  --mood-tune-dialog-pad-bottom: 50px;
+
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem 1rem var(--mood-tune-dialog-pad-bottom);
+  pointer-events: none;
+}
+
+.mood-tune-dialog-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--color-backdrop);
+  backdrop-filter: blur(4px);
+  pointer-events: auto;
+  opacity: 0;
+  transition:
+    opacity var(--ease-duration) var(--ease-spring),
+    backdrop-filter var(--duration-slow) var(--ease-out-quart);
+}
+
+.mood-tune-dialog-backdrop--ready:not(.mood-tune-dialog-backdrop--closing) {
+  opacity: 1;
+}
+
+.mood-tune-dialog-backdrop--closing {
+  opacity: 0;
+}
+
+.mood-tune-dialog-panel {
+  position: relative;
+  border-radius: 8px;
+  background: var(--color-bg);
+  padding: 10px;
+  box-shadow: 0 0 10px 0px var(--color-hover);
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: translateY(
+    calc(100% + var(--mood-tune-dialog-pad-bottom))
+  );
+  transition: transform var(--ease-duration) var(--ease-spring);
+}
+
+.mood-tune-dialog-panel--ready:not(.mood-tune-dialog-panel--closing) {
+  transform: translateY(0);
+}
+
+.mood-tune-dialog-panel--closing {
+  transform: translateY(
+    calc(100% + var(--mood-tune-dialog-pad-bottom))
+  );
+}
+
+/*
+ * Active tilt: -7°, -3.5°, 3.5°, 7° for i = 0…3.
+ * `--i` is set from `@for` (`$index`) in the template.
+ */
+.mood-tune-dialog-trigger-button {
+  --mood-trigger-active-rotate: calc(
+    -7deg * sin(90deg - var(--i, 0) * 60deg)
+  );
+
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  line-height: 0;
+  border-radius: 4px;
+}
+
+.mood-tune-dialog-trigger-button:hover .mood-tune-dialog-trigger-image,
+.mood-tune-dialog-trigger-button:focus-visible
+  .mood-tune-dialog-trigger-image {
+  transform: scale(1.05);
+}
+
+.mood-tune-dialog-trigger-button:active .mood-tune-dialog-trigger-image {
+  transform: scale(0.9) rotate(var(--mood-trigger-active-rotate, -7deg));
+}
+
+.mood-tune-dialog-trigger-image {
+  display: block;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: transform var(--ease-duration) var(--ease-spring);
+}
+
+.mood-tune-circle {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  pointer-events: auto;
+  clip-path: circle(0px at var(--cx) var(--cy));
+  animation: mood-circle-expand 1100ms var(--ease-out-quart) forwards;
+}
+
+@keyframes mood-circle-expand {
+  to {
+    clip-path: circle(150vmax at var(--cx) var(--cy));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mood-tune-dialog-backdrop,
+  .mood-tune-dialog-panel,
+  .mood-tune-dialog-trigger-image {
+    transition: none;
+  }
+
+  .mood-tune-dialog-panel,
+  .mood-tune-dialog-panel--ready,
+  .mood-tune-dialog-panel--closing {
+    transform: translateY(0);
+  }
+
+  .mood-tune-dialog-backdrop,
+  .mood-tune-dialog-backdrop--ready,
+  .mood-tune-dialog-backdrop--closing {
+    opacity: 1;
+  }
+
+  .mood-tune-dialog-trigger-button:hover .mood-tune-dialog-trigger-image,
+  .mood-tune-dialog-trigger-button:focus-visible
+    .mood-tune-dialog-trigger-image,
+  .mood-tune-dialog-trigger-button:active .mood-tune-dialog-trigger-image {
+    transform: none;
+  }
+
+  .mood-tune-circle {
+    animation: none;
+    clip-path: none;
+  }
+}
