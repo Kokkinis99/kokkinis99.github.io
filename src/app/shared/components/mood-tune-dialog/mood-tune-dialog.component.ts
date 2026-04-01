@@ -13,6 +13,8 @@ const TIMING = {
   motionMs: 500,
   /** Match `.mood-tune-circle` animation duration. */
   circleMs: 1100,
+  /** Fade circle to white before navigating. */
+  fadeToWhiteMs: 250,
 };
 
 export type MoodTrigger = {
@@ -41,6 +43,7 @@ export class MoodTuneDialogComponent implements OnInit {
   readonly panelReady = signal(false);
   readonly closing = signal(false);
   readonly expandingCircle = signal<ExpandingCircle | null>(null);
+  readonly fadingToWhite = signal(false);
 
   readonly triggers: MoodTrigger[] = [
     {
@@ -95,7 +98,10 @@ export class MoodTuneDialogComponent implements OnInit {
     this.triggerSelected.emit({ trigger, index });
     const mood = trigger.title.toLowerCase();
     setTimeout(() => {
-      window.location.href = `${HREF}?mood=${mood}`;
+      this.fadingToWhite.set(true);
+      setTimeout(() => {
+        window.location.href = `${HREF}?mood=${mood}`;
+      }, TIMING.fadeToWhiteMs);
     }, TIMING.circleMs);
   }
 

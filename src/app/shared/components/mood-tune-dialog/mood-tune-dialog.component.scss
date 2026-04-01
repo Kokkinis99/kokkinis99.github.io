@@ -103,6 +103,7 @@
   pointer-events: auto;
   clip-path: circle(0px at var(--cx) var(--cy));
   animation: mood-circle-expand 1100ms var(--ease-out-quart) forwards;
+  transition: background 250ms ease-in;
 }
 
 @keyframes mood-circle-expand {
@@ -140,5 +141,6 @@
   .mood-tune-circle {
     animation: none;
     clip-path: none;
+    transition: none;
   }
 }

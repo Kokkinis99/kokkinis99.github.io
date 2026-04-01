@@ -35,8 +35,9 @@
 @if (expandingCircle(); as circle) {
   <div
     class="mood-tune-circle"
+    [class.mood-tune-circle--fading]="fadingToWhite()"
     [style.--cx]="circle.x + 'px'"
     [style.--cy]="circle.y + 'px'"
-    [style.background]="circle.color"
+    [style.background]="fadingToWhite() ? 'white' : circle.color"
   ></div>
 }
