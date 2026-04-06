@@ -1,0 +1,34 @@
+<span
+  #trigger
+  class="music-card-trigger"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  (focus)="onMouseEnter()"
+  (blur)="onMouseLeave()"
+  tabindex="0"
+>
+  <ng-content />
+</span>
+<div
+  class="tooltip"
+  [class.tooltip-visible]="visible()"
+  [class.tooltip-hover-enabled]="hoverEnabled()"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  role="tooltip"
+  [attr.aria-hidden]="!visible()"
+>
+  <div class="tooltip-item">
+    <div class="tooltip-item-inner" (click)="onCardClick()">
+      <div class="disc-wrapper">
+        <img [src]="song().imageUrl" [alt]="song().title" />
+      </div>
+      <div class="tooltip-content">
+        <span class="tooltip-title heading-sm">{{ song().title }}</span>
+        <span class="tooltip-artist body-sm">{{ song().artist }}</span>
+        <div class="divider"></div>
+        <span class="tooltip-description body-sm">{{ song().lastPlayed }}</span>
+      </div>
+    </div>
+  </div>
+</div>

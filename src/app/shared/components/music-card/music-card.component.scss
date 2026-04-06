@@ -1,0 +1,171 @@
+:host {
+  position: relative;
+  display: inline;
+}
+
+.music-card-trigger {
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  outline: none;
+  border-radius: 2px;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-text-secondary);
+    outline-offset: 2px;
+  }
+}
+
+.tooltip {
+  display: flex;
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 0;
+  z-index: 1000;
+
+  visibility: hidden;
+  pointer-events: none;
+
+  // Delay hiding until exit animation completes
+  transition: visibility 0ms 300ms;
+
+  // Fills the 12px gap between trigger and tooltip so no other
+  // trigger can be reached by the mouse while this tooltip is open
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    right: 0;
+    height: 12px;
+  }
+}
+
+.tooltip-visible {
+  visibility: visible;
+  pointer-events: auto;
+
+  // No delay on entry - show immediately
+  transition: visibility 0ms;
+
+  .tooltip-item {
+    opacity: 1;
+    transform: translateY(0);
+
+    // Entry: transform with spring bounce, opacity delayed
+    transition:
+      transform var(--ease-duration) var(--ease-spring),
+      opacity var(--duration-standard) var(--ease-out-quart);
+  }
+}
+
+.tooltip-hover-enabled .tooltip-item {
+  pointer-events: auto;
+  transform-origin: bottom left;
+
+  // Hover on wrapper, translate the inner child — prevents flicker
+  // caused by the element moving out from under the cursor
+  &:hover .tooltip-item-inner {
+    transform: translateY(-5px);
+  }
+}
+
+.tooltip-item {
+  min-width: 230px;
+  position: relative;
+  border-radius: 8px;
+  pointer-events: none;
+
+  opacity: 0;
+  transform: translateY(50%);
+
+  // Exit: both start together, opacity completes before card reaches trigger
+  transition:
+    transform var(--duration-standard) var(--ease-out-quart),
+    opacity var(--duration-micro) var(--ease-out-quart);
+}
+
+.tooltip-item-inner {
+  position: relative;
+  width: 100%;
+  background: var(--color-bg);
+  border-radius: 8px;
+  padding: 10px;
+  transition:
+    transform var(--duration-standard) ease,
+    scale var(--duration-fast) var(--ease-out-quart);
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+  transform-origin: bottom center;
+
+  &:active {
+    scale: 0.95;
+  }
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .disc-wrapper {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+
+    img {
+      width: 52px;
+      height: 52px;
+      object-fit: cover;
+      border-radius: 50%;
+      animation: spin 10s linear infinite;
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      background: var(--color-bg);
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+
+      box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, .1);
+    }
+  }
+
+  .tooltip-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+
+    .tooltip-title {
+      color: var(--color-text);
+    }
+
+    .tooltip-artist {
+      color: var(--color-text-secondary);
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--color-hover);
+      margin-block: 2px;
+    }
+
+    .tooltip-description {
+      color: var(--color-text-secondary);
+    }
+  }
+}

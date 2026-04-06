@@ -11,6 +11,7 @@ import {
 import { MovieCardsComponent } from './shared/components/movie-cards/movie-cards.component';
 import { ExpandedCardComponent } from './shared/components/expanded-card/expanded-card.component';
 import { MoodTuneDialogComponent } from './shared/components/mood-tune-dialog/mood-tune-dialog.component';
+import { MusicCardComponent } from './shared/components/music-card/music-card.component';
 
 type Project = {
   title: string;
@@ -31,6 +32,7 @@ type Project = {
     MovieCardsComponent,
     ExpandedCardComponent,
     MoodTuneDialogComponent,
+    MusicCardComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
