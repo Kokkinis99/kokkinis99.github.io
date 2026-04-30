@@ -68,9 +68,9 @@ export class CarCardsComponent implements OnDestroy {
       image2: 'assets/images/car-cards/106-interior.JPG',
     },
     {
-      title: 'The old man\'s Strada',
-      description: 'I\'m not even supposed to be here today.',
-      content: 'I\'m not even supposed to be here today.',
+      title: CAR_CARD_BLOG_POSTS[1].title,
+      description: CAR_CARD_BLOG_POSTS[1].description,
+      content: CAR_CARD_BLOG_POSTS[1].content,
       image: 'assets/images/car-cards/strada-interior.png',
     },
     {

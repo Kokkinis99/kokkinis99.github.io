@@ -53,5 +53,92 @@ export const CAR_CARD_BLOG_POSTS = [
     I love you.
     And I hate you.
     And I wouldn't have it any other way.`
+  },
+  {
+    title: 'The old man\'s Strada',
+    description: 'Somewhere between the noise and the road, we finally met.',
+    content:
+    `This is a tough one. I'm not going to lie.
+    I always admired my dad. When I was younger we where never really close.
+    We didn't have those typical dad and son moments, no deep conversations, no shared hobbies.
+    Most things I learned about him, I learned from other people.
+
+    They'd say he was... crazy.
+    In a good way. In a way I think I'm starting to understand now.
+
+    He had this hunger for life. Hunger for adventure. Hunger for everything.
+
+    I won't get too much into his life.
+    But I will tell you how I saw him, through the Strada.
+
+    The Fiat Strada wasn't much to look at.
+    Honestly, kind of an ugly little thing.
+    Not fast. Not reliable either, if we're being real.
+
+    But to me, it was perfect.
+    
+    Those drives to the countryside were something else.
+
+    The old stereo head unit was a pain in the ass.
+    It would pop out of place and I had to hold it in when we hit rough roads.
+    The alarm button would get stuck in, and I still remember his face when I pressed it out of curiosity.
+    We drove for more than half an hour with the alarm going off, both of us pretending it was fine.
+
+    There were no cupholders.
+    But if you poped the glove compartment open, there was this tiny one inside.
+
+    He'd put his Frappe there and I'd put my Coke.
+    And we'd drive like that. Like we were on some kind of small, improvised adventure.
+
+    The car was always messy. Always full of random things.
+    But it was home.
+
+    Over the last couple of years, life started taking turns we didn't expect.
+
+    About a year ago, my mom got diagnosed with a terminal illness.
+    Everything shifted.
+
+    But something else happened too.
+    My dad and I got closer.
+
+    For the first time, I wasn't learning about him through other people.
+    I was learning about him from him.
+
+    Who he was. Who he used to be. What mattered to him.
+
+    And eventually, we talked about the Strada.
+    Not just as a car, but as a part of his life.
+
+    That's when I decided to start fixing it.
+
+    It's been a journey.
+    Not just with the car, but with him as well.
+
+    Because somewhere along the way, I came to a surprising realization.
+    The ugly little Strada wasn't just his.
+    It was one of the only places we ever really met.
+
+    But like I said, life keeps taking turns you don't expect.
+    About a week ago, my dad got diagnosed too.
+    And that's hard to even type right now.
+
+    But if there's one thing I learned from him it's this.
+    Life isn't about waiting for things to be easy.
+
+    It's about showing up anyway.
+    Messy car, broken stereo, alarms going off.
+    Still making it to the destination.
+
+    So I'm going to keep fixing the Strada.
+    Not because it's perfect, but because it never was.
+
+    And maybe that's the point.
+    Being messy and a little broken... is part of the journey.
+
+    And maybe, in some way, that's enough
+    to keep me moving forward.
+
+    With him.
+    `
   }
 ]
