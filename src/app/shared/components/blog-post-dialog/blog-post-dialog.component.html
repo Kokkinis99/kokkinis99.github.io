@@ -1,0 +1,28 @@
+<div
+  class="backdrop"
+  [class.closing]="closing()"
+  (click)="close()"
+></div>
+
+<div
+  class="panel"
+  [class.closing]="closing()"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="panel-header">
+    <span class="heading-sm panel-title">{{ title() }}</span>
+    <button
+      class="close-btn heading-sm"
+      type="button"
+      aria-label="Close"
+      (click)="close()"
+    >
+      &#x2715;
+    </button>
+  </div>
+
+  <div class="panel-body">
+    <p class="body-sm content-text">{{ content() }}</p>
+  </div>
+</div>

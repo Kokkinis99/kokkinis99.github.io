@@ -9,7 +9,7 @@ import { Component, input, output } from '@angular/core';
         type="button"
         class="project-card"
         [attr.aria-label]="title()"
-        (click)="dialogOpen.emit()"
+        (click)="dialogType() === 'blog' ? blogOpen.emit() : dialogOpen.emit()"
       >
         <span class="body title">{{ title() }}</span>
         <p class="body description">{{ description() }}</p>
@@ -77,5 +77,7 @@ export class ProjectCardComponent {
   description = input.required<string>();
   href = input.required<string>();
   useDialog = input(false);
+  dialogType = input<'moodtune' | 'blog'>('moodtune');
   readonly dialogOpen = output<void>();
+  readonly blogOpen = output<void>();
 }

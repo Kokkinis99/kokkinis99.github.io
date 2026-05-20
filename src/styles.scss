@@ -8,6 +8,7 @@
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
+  --font-weight-semibold: 600;
 
   --font-line-height: calc(1em + 0.5rem);
 
@@ -23,11 +24,16 @@
   // Light mode colors (default)
   --color-bg: hsl(0 0% 98%);
   --color-text: hsl(0 0% 4%);
-  --color-text-secondary: hsl(0 0% 44%);
+  --color-text-secondary: hsl(0, 0%, 44%);
+  --color-text-tertiary: hsl(0, 0%, 60%);
   --color-text-link: hsl(0 0% 60%);
   --color-hover: hsl(0 0% 4% / 0.1);
   --color-backdrop: hsl(0 0% 98% / 0.1);
   --color-backdrop-closing: hsl(0 0% 98% / 0);
+  --color-gold: hsl(43, 90%, 40%);
+
+  --color-text-incorrect: hsl(0, 100%, 61%);
+  --color-text-ghost: hsl(0, 0%, 44%); // TODO: figure out a color
 
   // Animation durations
   --duration-micro: 50ms;
@@ -65,11 +71,19 @@
   --color-text-secondary: hsl(0 0% 63%);
   --color-text-link: hsl(0 0% 80%);
   --color-hover: hsl(0 0% 98% / 0.2);
+  --color-gold: hsl(51, 100%, 50%);
 }
 
 // =============================================================================
 // TYPOGRAPHY CLASSES
 // =============================================================================
+
+.title {
+  font-size: var(--font-size-32);
+  line-height: var(--font-line-height);
+  font-weight: var(--font-weight-semibold);
+  -webkit-font-smoothing: var(--font-smoothing); 
+}
 
 .heading-lg {
   font-size: var(--font-size-24);
@@ -154,6 +168,7 @@ a {
 }
 
 button {
+  transition: transform var(--duration-standard) var(--ease-out-quart);
   &:active {
     transform: scale(0.97);
   }

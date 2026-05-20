@@ -1,0 +1,79 @@
+@if (gameState() === 'idle') {
+  <div class="game-idle" [class.fading-out]="idleFadingOut()">
+    <p class="body">
+      By the way, I'm pretty confident when it comes to my typing speed. <br />
+      On <a href="https://monkeytype.com" target="_blank">Monkeytype</a>, I have <span class="body">152wpm</span> on the 25-word test and <span class="body">121wpm</span> on the 60-second test.<br />
+      I like typing so much that I made this little monkeytype clone but with a twist.<br />
+    </p>
+    <div class="action-container">
+      <p class="body">Think you can beat me?</p>
+      <button class="game-idle-button" (click)="startGame()">Let's see</button>
+    </div>
+  </div>
+}
+
+@if (gameState() !== 'idle') {
+  <div class="exit-container">
+    @if (gameState() === 'playing' && mode() === '60seconds') {
+      <div class="timer title" [class.urgent]="timeRemaining() <= 10">
+        {{ timeRemaining() }}
+      </div>
+    }
+    <button class="exit-button" (click)="exitGame()">
+      <i-lucide [img]="exitGameIcon" [size]="18" class="exit-icon" />
+    </button>
+  </div>
+}
+
+@if (gameState() === 'ready') {
+  <div class="game-mode-container" [class.fading-out]="cardsFadingOut()">
+    <span class="heading-sm">Select game mode</span>
+    <div class="cards-container">
+      <button class="card" (click)="selectMode('25words')">
+        25 words
+      </button>
+      <button class="card" (click)="selectMode('60seconds')">
+        60 seconds
+      </button>
+    </div>
+  </div>
+}
+
+@if (gameState() === 'playing') {
+  <div class="text-outer" #textOuter [class.scrolling]="mode() === '60seconds'">
+    <div class="text-container" #textContainer>
+      @for (char of chars(); track $index) {
+        <span class="character heading-lg"
+        [class.correct]="typedResults().get($index) === 'correct'"
+        [class.incorrect]="typedResults().get($index) === 'incorrect'"
+        [class.ghost]="$index < ghostIdx() && $index >= userIndex()"
+        [style.--i]="$index < 200 ? $index : 200"
+        >{{ char }}</span>
+      }
+      <div class="cursor user-cursor" [class.idle]="!loopStarted()" #userCursor></div>
+      <div class="cursor ghost-cursor" [style.opacity]="loopStarted() ? 1 : 0" #ghostCursor></div>
+    </div>
+  </div>
+
+  <div class="restart-container">
+    <button class="restart-button" (click)="restartGame()" #restartBtn>
+      <i-lucide [img]="restartGameIcon" [size]="18" class="restart-icon" />
+    </button>
+  </div>
+}
+
+@if (gameState() === 'finished') {
+  <div class="game-finished-container">
+    <div class="game-finished-card">
+      @if (userWon()) {
+        <p class="heading-sm">You won! 🎉</p>
+      } @else {
+        <p class="heading-sm">You lost!</p>
+      }
+      <p class="body">
+        Your speed: <span class="body-sm">{{ userWpm() }} WPM</span> <br/>
+        My speed: <span class="body-sm">{{ mode() === '25words' ? 152 : 121 }} WPM</span>.
+      </p>
+    </div>
+  </div>
+}

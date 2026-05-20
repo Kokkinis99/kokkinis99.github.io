@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, ViewChild } from '@angular/core';
+import { Component, inject, signal, ViewChild } from '@angular/core';
 import { LucideAngularModule, Moon, Sun, Mail } from 'lucide-angular';
 import { ThemeService } from './core/services/theme.service';
 import { IconButtonComponent } from './shared/components/icon-button/icon-button.component';
@@ -12,12 +12,17 @@ import { MovieCardsComponent } from './shared/components/movie-cards/movie-cards
 import { ExpandedCardComponent } from './shared/components/expanded-card/expanded-card.component';
 import { MoodTuneDialogComponent } from './shared/components/mood-tune-dialog/mood-tune-dialog.component';
 import { MusicCardComponent } from './shared/components/music-card/music-card.component';
+import { TypingGameComponent } from './shared/components/typing-game/typing-game.component';
+import { BlogPostDialogComponent } from './shared/components/blog-post-dialog/blog-post-dialog.component';
+import { BLOG_POSTS } from './shared/components/blog-post-dialog/blog-posts';
 
 type Project = {
   title: string;
   description: string;
   href: string;
   opensDialog?: boolean;
+  dialogType?: 'moodtune' | 'blog';
+  content?: string;
 };
 
 @Component({
@@ -33,6 +38,8 @@ type Project = {
     ExpandedCardComponent,
     MoodTuneDialogComponent,
     MusicCardComponent,
+    TypingGameComponent,
+    BlogPostDialogComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -47,13 +54,14 @@ export class AppComponent {
 
   readonly expandedCard = signal<CarCard | null>(null);
   readonly moodTuneDialogOpen = signal(false);
+  readonly blogPostDialogPost = signal<Project | null>(null);
+  readonly typingGameActive = signal(false);
 
   // Icons
   readonly moonIcon = Moon;
   readonly sunIcon = Sun;
   readonly mailIcon = Mail;
 
-  // Projects data - easy to extend later
   readonly projects = signal<Project[]>([
     {
       title: 'Kodon',
@@ -70,7 +78,24 @@ export class AppComponent {
     },
   ]);
 
-  readonly projectsReversed = computed(() => [...this.projects()].reverse());
+  readonly posts = signal<Project[]>([
+    {
+      title: 'Josh W. Comeau Student Showcase',
+      description:
+        "My app's animation got featured on Josh W. Comeau's newsletter!",
+      href: 'https://www.joshwcomeau.com/email/wham-launch-009-student-showcase/',
+    },
+    {
+      title: BLOG_POSTS.monkeytypeClone.title,
+      description:
+        'A typing game inspired by MonkeyType, ' +
+        'built right here, just under this post.',
+      href: 'https://kokkin.is/building-the-monkeytype-clone',
+      opensDialog: true,
+      dialogType: 'blog',
+      content: BLOG_POSTS.monkeytypeClone.content,
+    },
+  ]);
 
   toggleTheme(): void {
     this.themeIconAnimating.set(true);
@@ -99,5 +124,17 @@ export class AppComponent {
 
   closeMoodTuneDialog(): void {
     this.moodTuneDialogOpen.set(false);
+  }
+
+  openBlogPostDialog(post: Project): void {
+    this.blogPostDialogPost.set(post);
+  }
+
+  closeBlogPostDialog(): void {
+    this.blogPostDialogPost.set(null);
+  }
+
+  onGameActive(active: boolean): void {
+    this.typingGameActive.set(active);
   }
 }
