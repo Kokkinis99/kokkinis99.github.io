@@ -106,7 +106,7 @@ export class AppComponent {
   }
 
   sendEmail(): void {
-    window.location.href = 'mailto:george@kokkin.is';
+    window.location.href = 'mailto:hello@kokkin.is';
   }
 
   onCarCardSelected(card: CarCard): void {
