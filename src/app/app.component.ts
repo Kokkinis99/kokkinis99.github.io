@@ -86,14 +86,13 @@ export class AppComponent {
       href: 'https://www.joshwcomeau.com/email/wham-launch-009-student-showcase/',
     },
     {
-      title: BLOG_POSTS.monkeytypeClone.title,
+      title: BLOG_POSTS.aiSkills.title,
       description:
-        'A typing game inspired by MonkeyType, ' +
-        'built right here, just under this post.',
-      href: 'https://kokkin.is/building-the-monkeytype-clone',
+        'My favorite AI skills as of right now',
+      href: 'https://kokkin.is/my-favorite-ai-skills-so-far',
       opensDialog: true,
       dialogType: 'blog',
-      content: BLOG_POSTS.monkeytypeClone.content,
+      content: BLOG_POSTS.aiSkills.content,
     },
   ]);
 

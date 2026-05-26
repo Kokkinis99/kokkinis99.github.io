@@ -1,12 +1,14 @@
 <div
   class="backdrop"
-  [class.closing]="closing()"
+  [class.backdrop-visible]="ready()"
+  [class.backdrop-closing]="closing()"
   (click)="close()"
 ></div>
 
 <div
   class="panel"
-  [class.closing]="closing()"
+  [class.panel-ready]="ready()"
+  [class.panel-closing]="closing()"
   role="dialog"
   aria-modal="true"
 >
