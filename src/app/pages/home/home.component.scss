@@ -1,0 +1,82 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-top: 8rem;
+
+  transition: transform var(--duration-standard) var(--ease-out-quart), filter var(--duration-standard) var(--ease-out-quart);
+
+  &.hidden {
+    transform: scale(.95);
+    filter: blur(4px);
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.resume-btn {
+  margin-inline: 12px auto;
+}
+
+.home-link {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem;
+}
+
+.career-info {
+  color: var(--color-text-secondary);
+}
+
+.description {
+  color: var(--color-text);
+  margin-top: 0.625rem;
+  text-wrap: pretty;
+  max-width: 400px;
+}
+
+.main {
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-heading {
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.typing-game {
+  margin-top: 4rem;
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: 2rem;
+  margin-inline: auto;
+}

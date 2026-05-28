@@ -1,0 +1,29 @@
+<div class="resume-page">
+  <header class="resume-header">
+    <a routerLink="/" class="back-link heading-sm">
+      <lucide-icon [img]="arrowLeftIcon" size="14" />
+      kokkin.is
+    </a>
+    <div class="resume-actions">
+      <app-icon-button
+        [icon]="theme() === 'dark' ? sunIcon : moonIcon"
+        ariaLabel="Toggle theme"
+        (clicked)="toggleTheme()"
+      />
+      <app-icon-button
+        [icon]="printerIcon"
+        ariaLabel="Print resume"
+        (clicked)="print()"
+      />
+    </div>
+  </header>
+
+  @if (loading()) {
+    <div class="resume-loading body-sm">Loading...</div>
+  } @else {
+    <article
+      class="resume-content"
+      [innerHTML]="content()"
+    ></article>
+  }
+</div>

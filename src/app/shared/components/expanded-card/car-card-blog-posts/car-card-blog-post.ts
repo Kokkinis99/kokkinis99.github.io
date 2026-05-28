@@ -140,5 +140,34 @@ export const CAR_CARD_BLOG_POSTS = [
 
     With him.
     `
+  },
+  {
+    title: 'A not so great summer decision',
+    description: 'Who needs an A/C anyway?',
+    content: `
+    Last weekend was fun. A friend of mine is a mechanic and he was kind enough to let me bring my car to his shop and work on it together.
+    Coffee, beers, and food in exchange for a few hours of labor and some knowledge is always a good deal.
+
+    I got this new radiator with silicone hoses for the 106. But fitting it was a bit of a challenge.
+    The new radiator has two rows. This is good, it means that it gets more coolant, and it flows more efficiently.
+    But it also means it's a lot bigger than the OEM radiator.
+    So we needed to make some space...
+    I mean, summer in Greece is hot. But I am willing to trade my comfort for my engine's health.
+    So, the A/C had to go.
+
+    Not the smartest decision when we're right before the summer.
+    But the new radiator is so good, I honestly don't regret it.
+
+    We tested it for 30 minutes and the cooling fans just wouldn't turn on.
+    My friend looked at me and said "Hey are you sure your fans were working before?"
+
+    Right as he said that, boom! The fans turned on.
+    The new hoses were still cool to the touch.
+    Everything was working perfectly.
+
+    And riding it back home brought a huge smile to my face.
+    Sure a sweaty smile.
+    But a smile nonetheless.
+    `
   }
 ]

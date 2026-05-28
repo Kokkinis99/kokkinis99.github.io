@@ -1,0 +1,244 @@
+.resume-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-top: 8rem;
+  padding-bottom: 6rem;
+}
+
+.resume-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  transition: color var(--duration-standard) var(--ease-out-quart);
+
+  lucide-icon {
+    display: inline-flex;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      color: var(--color-text);
+    }
+  }
+}
+
+.resume-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem;
+}
+
+.resume-loading {
+  color: var(--color-text-secondary);
+  text-align: center;
+  padding-top: 4rem;
+}
+
+// ============================================================
+// Markdown-rendered resume content
+// ============================================================
+
+.resume-content {
+  > * {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+    transition:
+      opacity var(--duration-slow) var(--ease-out-quart),
+      transform var(--duration-slow) var(--ease-out-quart),
+      filter var(--duration-slow) var(--ease-out-quart);
+
+    @starting-style {
+      opacity: 0;
+      transform: scale(0.95);
+      filter: blur(4px);
+    }
+  }
+
+  @for $i from 1 through 60 {
+    > *:nth-child(#{$i}) {
+      transition-delay: #{($i - 1) * 40}ms;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    > * {
+      transition: none;
+    }
+  }
+
+  h1 {
+    font-size: var(--font-size-24);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--font-line-height);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    margin-bottom: 0.125rem;
+  }
+
+  // "Frontend Engineer" subtitle (rendered as <p><strong>...)
+  > p:first-of-type {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    margin-bottom: 0.25rem;
+  }
+
+  h2 {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: var(--font-size-12);
+  }
+
+  h3 {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    margin-top: 1.25rem;
+    margin-bottom: 0.125rem;
+  }
+
+  h4 {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: var(--font-size-14);
+    line-height: var(--font-line-height);
+    color: var(--color-text-secondary);
+    -webkit-font-smoothing: antialiased;
+    margin-bottom: 0.5rem;
+    text-wrap: pretty;
+  }
+
+  em {
+    color: var(--color-text-secondary);
+    font-style: normal;
+    font-size: var(--font-size-12);
+  }
+
+  strong {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  li {
+    font-size: var(--font-size-14);
+    line-height: var(--font-line-height);
+    color: var(--color-text-secondary);
+    -webkit-font-smoothing: antialiased;
+    margin-bottom: 0.3rem;
+    text-wrap: pretty;
+
+    strong {
+      color: var(--color-text);
+    }
+
+    p {
+      margin-bottom: 0;
+      display: inline;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--color-hover);
+    margin: 1.5rem 0;
+  }
+
+  a {
+    color: var(--color-text-secondary);
+    text-underline-offset: 3px;
+    text-decoration-color: var(--color-text-link);
+  }
+
+  code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.8em;
+    background: var(--color-hover);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    color: var(--color-text);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-14);
+    margin-top: 0.5rem;
+  }
+
+  th {
+    text-align: left;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-hover);
+    font-size: var(--font-size-12);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  td {
+    padding: 0.5rem 0.75rem;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-14);
+    border-bottom: 1px solid var(--color-hover);
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+// ============================================================
+// Print styles
+// ============================================================
+
+@media print {
+  .resume-header {
+    display: none;
+  }
+
+  .resume-page {
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .resume-content {
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    hr {
+      border-top-color: #ccc;
+    }
+  }
+}

@@ -4,6 +4,11 @@
       <a href="." class="home-link heading-sm" aria-label="Home">
         George Kokkinis
       </a>
+      <app-icon-button
+        [icon]="resumeIcon"
+        ariaLabel="View resume"
+        (clicked)="viewResume()"
+      />
       <div class="options">
         <app-icon-button
           [icon]="theme() === 'dark' ? sunIcon : moonIcon"

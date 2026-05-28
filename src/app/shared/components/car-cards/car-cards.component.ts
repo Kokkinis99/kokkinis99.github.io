@@ -74,11 +74,12 @@ export class CarCardsComponent implements OnDestroy {
       image: 'assets/images/car-cards/strada-interior.png',
     },
     {
-      title: 'Cleaning the Strada',
-      description: 'I\'m not even supposed to be here today.',
-      content: 'I\'m not even supposed to be here today.',
-      image: 'assets/images/car-cards/strada-interior.png',
-    }
+      title: CAR_CARD_BLOG_POSTS[2].title,
+      description: CAR_CARD_BLOG_POSTS[2].description,
+      content: CAR_CARD_BLOG_POSTS[2].content,
+      image: 'assets/images/car-cards/both-pugs.png',
+      image2: 'assets/images/car-cards/new-rad.png',
+    },
   ]);
 
   ngOnDestroy(): void {
