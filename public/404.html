@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>George Kokkinis — Design Engineer</title>
+    <script>
+      // SPA redirect: store the full path and redirect to root.
+      // index.html will read this and restore the route via history.replaceState.
+      sessionStorage.setItem('spa-redirect', location.pathname + location.search + location.hash);
+    </script>
+    <meta http-equiv="refresh" content="0;URL='/'" />
+  </head>
+  <body></body>
+</html>

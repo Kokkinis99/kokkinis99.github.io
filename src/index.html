@@ -28,6 +28,17 @@
       rel="stylesheet"
     />
 
+    <!-- SPA routing: restore path after GitHub Pages 404 redirect -->
+    <script>
+      (function () {
+        var redirect = sessionStorage.getItem('spa-redirect');
+        if (redirect) {
+          sessionStorage.removeItem('spa-redirect');
+          history.replaceState(null, '', redirect);
+        }
+      })();
+    </script>
+
     <!-- Prevent FOUC: Apply theme before Angular loads -->
     <script>
       (function () {
