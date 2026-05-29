@@ -29,10 +29,10 @@ Covve is the leading AI-powered business card scanning and CRM app, available on
 **Admin web portal: Angular 19 (2026)**
 
 - **Designed in Figma, built zero to production as sole engineer:** Two product surfaces, full CI/CD via GitHub Actions → Docker → Azure Kubernetes Service, Sentry with release tracking and structured log forwarding.
-- **Data-table primitive:** Core lead management surface built on TanStack Table v8 — full-text search with inline highlights, CSV export with dynamic custom-field columns, column visibility, drag-to-reorder, and skeleton loading states.
+- **Data-table primitive:** Core lead management surface built on TanStack Table v8, full-text search with inline highlights, CSV export with dynamic custom-field columns, column visibility, drag-to-reorder, and skeleton loading states.
 - **UI & animation library:** Built a reusable component and animation library on top of ng-primitives, later extracted into my open-source toast library, Kodon.
 - **Design system:** HSL neutral scale with light/dark mode and OKLCH upgrade via `@supports`.
-- **Performance pass:** OnPush change detection across the board, async animation bootstrap, parallel save pipelines — landed as a single documented architectural commit.
+- **Performance pass:** OnPush change detection across the board, async animation bootstrap, parallel save pipelines.
 
 *Stack: Angular 19 · Ionic · TanStack Table · ng-primitives · Firebase · RxJS · Jest · Playwright · Sentry*
 
@@ -80,7 +80,7 @@ Angular · TypeScript · Ionic · RxJS · Firebase · JavaScript · HTML · SCSS
 Figma · Design systems · CSS animations · OKLCH · Dark mode · Accessibility · Responsive UI
 
 **Testing & Platform**
-Jest · Playwright · GitHub Actions · Docker · Azure Kubernetes Service · Capacitor
+Jest · Playwright · GitHub Actions · Docker · Capacitor · Sentry
 
 ---
 
@@ -95,7 +95,7 @@ National and Kapodistrian University of Athens · Department of Informatics
 
 | Course | Provider | Status |
 |---|---|---|
-| Whimsical Animations | Josh Comeau | Completed — work featured in launch newsletter |
-| InterfaceCraft | Josh Puckett | Completed — Founding Member |
+| Whimsical Animations | Josh Comeau | Completed, work featured in launch newsletter |
+| InterfaceCraft | Josh Puckett | Completed, Founding Member |
 | Animations on the Web | Emil Kowalski | Completed |
 | CSS for JavaScript Developers | Josh Comeau | In Progress |
