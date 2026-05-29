@@ -1,3 +1,4 @@
+<div class="page-wrapper" [class.hidden]="anyModalOpen()">
 <main class="container" [class.hidden]="typingGameActive()">
   <section class="info">
     <header class="header">
@@ -72,16 +73,20 @@
   <app-typing-game (gameActive)="onGameActive($event)" />
 </section>
 
+</div>
+
 
 @if (expandedCard()) {
   <app-expanded-card
     [card]="expandedCard()!"
+    (closingStarted)="onExpandedCardClosingStarted()"
     (closed)="onExpandedCardClosed()"
   />
 }
 
 @if (moodTuneDialogOpen()) {
   <app-mood-tune-dialog
+    (closingStarted)="onMoodTuneClosingStarted()"
     (closed)="closeMoodTuneDialog()"
   />
 }
@@ -90,6 +95,7 @@
   <app-blog-post-dialog
     [title]="blogPostDialogPost()!.title"
     [content]="blogPostDialogPost()!.content!"
+    (closingStarted)="onBlogPostClosingStarted()"
     (closed)="closeBlogPostDialog()"
   />
 }

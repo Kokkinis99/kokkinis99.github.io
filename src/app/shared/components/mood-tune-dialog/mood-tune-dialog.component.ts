@@ -38,6 +38,7 @@ type ExpandingCircle = { x: number; y: number; color: string };
 })
 export class MoodTuneDialogComponent implements OnInit {
   readonly closed = output<void>();
+  readonly closingStarted = output<void>();
   readonly triggerSelected = output<MoodTriggerSelection>();
 
   readonly panelReady = signal(false);
@@ -79,9 +80,8 @@ export class MoodTuneDialogComponent implements OnInit {
       return;
     }
     this.closing.set(true);
-    setTimeout(() => {
-      this.closed.emit();
-    }, TIMING.motionMs);
+    this.closingStarted.emit();
+    setTimeout(() => this.closed.emit(), TIMING.motionMs);
   }
 
   onTriggerSelect(

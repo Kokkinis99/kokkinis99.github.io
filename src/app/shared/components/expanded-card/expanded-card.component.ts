@@ -22,6 +22,7 @@ export class ExpandedCardComponent implements OnInit {
   readonly card = input.required<CarCard>();
 
   readonly closed = output<void>();
+  readonly closingStarted = output<void>();
 
   readonly ready = signal(false);
   readonly closing = signal(false);
@@ -35,10 +36,8 @@ export class ExpandedCardComponent implements OnInit {
   close(): void {
     if (this.closing()) return;
     this.closing.set(true);
-
-    setTimeout(() => {
-      this.closed.emit();
-    }, TIMING.fadeOut);
+    this.closingStarted.emit();
+    setTimeout(() => this.closed.emit(), TIMING.fadeOut);
   }
 
   @HostListener('document:keydown.escape')

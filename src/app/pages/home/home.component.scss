@@ -1,13 +1,28 @@
+.page-wrapper {
+  transition:
+    transform var(--duration-standard) var(--ease-out-quart),
+    filter var(--duration-standard) var(--ease-out-quart);
+
+  &.hidden {
+    transform: scale(0.95);
+    filter: blur(4px);
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
   padding-top: 8rem;
 
-  transition: transform var(--duration-standard) var(--ease-out-quart), filter var(--duration-standard) var(--ease-out-quart);
+  transition:
+    transform var(--duration-standard) var(--ease-out-quart),
+    filter var(--duration-standard) var(--ease-out-quart);
 
   &.hidden {
-    transform: scale(.95);
+    transform: scale(0.95);
     filter: blur(4px);
     pointer-events: none;
     user-select: none;

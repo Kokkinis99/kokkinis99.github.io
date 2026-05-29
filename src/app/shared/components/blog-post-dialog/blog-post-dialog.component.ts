@@ -22,6 +22,7 @@ export class BlogPostDialogComponent implements OnInit {
   readonly content = input.required<string>();
 
   readonly closed = output<void>();
+  readonly closingStarted = output<void>();
 
   readonly ready = signal(false);
   readonly closing = signal(false);
@@ -35,6 +36,7 @@ export class BlogPostDialogComponent implements OnInit {
   close(): void {
     if (this.closing()) return;
     this.closing.set(true);
+    this.closingStarted.emit();
     setTimeout(() => this.closed.emit(), TIMING.fadeOut);
   }
 

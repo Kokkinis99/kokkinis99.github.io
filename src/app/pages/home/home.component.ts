@@ -1,4 +1,4 @@
-import { Component, inject, signal, ViewChild } from '@angular/core';
+import { Component, computed, inject, signal, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   LucideAngularModule,
@@ -65,6 +65,17 @@ export class HomeComponent {
   readonly blogPostDialogPost = signal<Project | null>(null);
   readonly typingGameActive = signal(false);
 
+  private readonly expandedCardBackdrop = signal(false);
+  private readonly moodTuneBackdrop = signal(false);
+  private readonly blogPostBackdrop = signal(false);
+
+  readonly anyModalOpen = computed(
+    () =>
+      this.expandedCardBackdrop() ||
+      this.moodTuneBackdrop() ||
+      this.blogPostBackdrop()
+  );
+
   readonly moonIcon = Moon;
   readonly sunIcon = Sun;
   readonly mailIcon = Mail;
@@ -119,6 +130,11 @@ export class HomeComponent {
 
   onCarCardSelected(card: CarCard): void {
     this.expandedCard.set(card);
+    this.expandedCardBackdrop.set(true);
+  }
+
+  onExpandedCardClosingStarted(): void {
+    this.expandedCardBackdrop.set(false);
   }
 
   onExpandedCardClosed(): void {
@@ -128,6 +144,11 @@ export class HomeComponent {
 
   openMoodTuneDialog(): void {
     this.moodTuneDialogOpen.set(true);
+    this.moodTuneBackdrop.set(true);
+  }
+
+  onMoodTuneClosingStarted(): void {
+    this.moodTuneBackdrop.set(false);
   }
 
   closeMoodTuneDialog(): void {
@@ -136,6 +157,11 @@ export class HomeComponent {
 
   openBlogPostDialog(post: Project): void {
     this.blogPostDialogPost.set(post);
+    this.blogPostBackdrop.set(true);
+  }
+
+  onBlogPostClosingStarted(): void {
+    this.blogPostBackdrop.set(false);
   }
 
   closeBlogPostDialog(): void {
