@@ -72,18 +72,18 @@ export class HomeComponent {
 
   readonly projects = signal<Project[]>([
     {
-      title: 'Kodon',
-      description:
-        'A Sonner-inspired toast component for Angular, ' +
-        'built on top of ng-primitives.',
-      href: 'https://kodon.kokkin.is',
-    },
-    {
       title: 'MoodTune',
       description: 'A mood-based music recommendation app.',
       href: 'https://moodtune.kokkin.is',
       opensDialog: true,
     },
+    {
+      title: 'Kodon',
+      description:
+        'A Sonner-inspired toast component for Angular, ' +
+        'built on top of ng-primitives.',
+      href: 'https://kodon.kokkin.is',
+    }
   ]);
 
   readonly posts = signal<Project[]>([
