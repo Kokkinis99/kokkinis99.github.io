@@ -21,6 +21,10 @@
   color: var(--color-text-secondary);
   transition: color var(--duration-standard) var(--ease-out-quart);
 
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
   lucide-icon {
     display: inline-flex;
   }
@@ -74,6 +78,12 @@
   @media (prefers-reduced-motion: reduce) {
     > * {
       transition: none;
+
+      @starting-style {
+        opacity: 1;
+        transform: none;
+        filter: none;
+      }
     }
   }
 

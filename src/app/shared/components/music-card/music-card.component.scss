@@ -169,3 +169,15 @@
     }
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip,
+  .tooltip-item,
+  .tooltip-item-inner {
+    transition: none;
+  }
+
+  .disc-wrapper img {
+    animation: none;
+  }
+}

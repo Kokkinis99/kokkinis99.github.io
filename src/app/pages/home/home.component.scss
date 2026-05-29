@@ -95,3 +95,15 @@
   padding-inline: 2rem;
   margin-inline: auto;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-wrapper,
+  .container {
+    transition: none;
+
+    &.hidden {
+      transform: none;
+      filter: none;
+    }
+  }
+}

@@ -221,16 +221,8 @@
     }
   }
 
-    @media (prefers-reduced-motion: reduce) {
-      .restart-button {
-        transition: none;
-      }
-
-      .restart-icon {
-        transition: none;
-      }
-    }
 }
+
 
 .game-finished-container {
   width: 100%;
@@ -268,6 +260,68 @@
 
     .body {
       text-align: center;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-idle {
+    transition: none;
+  }
+
+  .timer {
+    transition: none;
+  }
+
+  .exit-button,
+  .exit-icon {
+    transition: none;
+  }
+
+  .game-mode-container {
+    transition: none;
+
+    @starting-style {
+      transform: none;
+      filter: none;
+      opacity: 1;
+    }
+  }
+
+  .text-container {
+    transition: none;
+  }
+
+  .character {
+    transition: none;
+
+    @starting-style {
+      filter: none;
+      transform: none;
+      opacity: 1;
+    }
+  }
+
+  .cursor {
+    transition: none;
+  }
+
+  .cursor.idle {
+    animation: none;
+  }
+
+  .restart-button,
+  .restart-icon {
+    transition: none;
+  }
+
+  .game-finished-card {
+    transition: none;
+
+    @starting-style {
+      transform: none;
+      filter: none;
+      opacity: 1;
     }
   }
 }

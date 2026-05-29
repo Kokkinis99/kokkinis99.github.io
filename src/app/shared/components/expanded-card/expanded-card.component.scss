@@ -146,4 +146,23 @@
   .expanded-card {
     transition: none;
   }
+
+  .expanded-card-closing {
+    transition: none;
+    transform: none;
+  }
+
+  .expanded-card-image {
+    transition: none;
+  }
+
+  .expanded-card-image.image-2 {
+    transition: none;
+    transition-delay: 0ms;
+
+    @starting-style {
+      top: calc(220px + 10px);
+      opacity: 1;
+    }
+  }
 }

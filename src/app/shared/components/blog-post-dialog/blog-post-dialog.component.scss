@@ -123,4 +123,13 @@
   .panel {
     transition: none;
   }
+
+  .panel-closing {
+    transition: none;
+    transform: none;
+  }
+
+  .close-btn {
+    transition: none;
+  }
 }

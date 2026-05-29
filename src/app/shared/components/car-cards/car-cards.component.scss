@@ -277,7 +277,10 @@ $sibling-fade-duration: 250ms;
     transition: none;
   }
 
+  // !important needed to beat high-specificity rules like
+  // .tooltip-visible .tooltip-item:nth-of-type(2) and
+  // .tooltip-expanding .tooltip-item-selected
   .tooltip-item {
-    transition: none;
+    transition: none !important;
   }
 }
