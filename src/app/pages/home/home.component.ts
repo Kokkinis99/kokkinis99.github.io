@@ -8,6 +8,7 @@ import {
   FileUser,
 } from 'lucide-angular';
 import { ThemeService } from '../../core/services/theme.service';
+import { DeviceService } from '../../core/services/device.service';
 import { IconButtonComponent } from '../../shared/components/icon-button/icon-button.component';
 import { ProjectCardComponent } from '../../shared/components/project-card/project-card.component';
 import { GymTooltipComponent } from '../../shared/components/gym-tooltip/gym-tooltip.component';
@@ -21,16 +22,8 @@ import { MoodTuneDialogComponent } from '../../shared/components/mood-tune-dialo
 import { MusicCardComponent } from '../../shared/components/music-card/music-card.component';
 import { TypingGameComponent } from '../../shared/components/typing-game/typing-game.component';
 import { BlogPostDialogComponent } from '../../shared/components/blog-post-dialog/blog-post-dialog.component';
-import { BLOG_POSTS } from '../../shared/components/blog-post-dialog/blog-posts';
-
-type Project = {
-  title: string;
-  description: string;
-  href: string;
-  opensDialog?: boolean;
-  dialogType?: 'moodtune' | 'blog';
-  content?: string;
-};
+import { MobileFallbackComponent } from './mobile-fallback/mobile-fallback.component';
+import { HOME_POSTS, HOME_PROJECTS, Project } from './home.data';
 
 @Component({
   selector: 'app-home',
@@ -47,6 +40,7 @@ type Project = {
     MusicCardComponent,
     TypingGameComponent,
     BlogPostDialogComponent,
+    MobileFallbackComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -54,6 +48,7 @@ type Project = {
 export class HomeComponent {
   private readonly themeService = inject(ThemeService);
   private readonly router = inject(Router);
+  readonly deviceService = inject(DeviceService);
 
   @ViewChild(CarCardsComponent) carCardsRef!: CarCardsComponent;
 
@@ -81,38 +76,8 @@ export class HomeComponent {
   readonly mailIcon = Mail;
   readonly resumeIcon = FileUser;
 
-  readonly projects = signal<Project[]>([
-    {
-      title: 'MoodTune',
-      description: 'A mood-based music recommendation app.',
-      href: 'https://moodtune.kokkin.is',
-      opensDialog: true,
-    },
-    {
-      title: 'Kodon',
-      description:
-        'A Sonner-inspired toast component for Angular, ' +
-        'built on top of ng-primitives.',
-      href: 'https://kodon.kokkin.is',
-    }
-  ]);
-
-  readonly posts = signal<Project[]>([
-    {
-      title: 'Josh W. Comeau Student Showcase',
-      description:
-        "My app's animation got featured on Josh W. Comeau's newsletter!",
-      href: 'https://www.joshwcomeau.com/email/wham-launch-009-student-showcase/',
-    },
-    {
-      title: BLOG_POSTS.aiSkills.title,
-      description: 'My favorite AI skills as of right now',
-      href: 'https://kokkin.is/my-favorite-ai-skills-so-far',
-      opensDialog: true,
-      dialogType: 'blog',
-      content: BLOG_POSTS.aiSkills.content,
-    },
-  ]);
+  readonly projects = signal<Project[]>(HOME_PROJECTS);
+  readonly posts = signal<Project[]>(HOME_POSTS);
 
   toggleTheme(): void {
     this.themeIconAnimating.set(true);

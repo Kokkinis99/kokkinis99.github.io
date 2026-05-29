@@ -143,6 +143,12 @@
   scrollbar-color: var(--color-text-link) transparent;
 }
 
+*:focus-visible {
+  outline: 2px solid var(--color-text-secondary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 html,
 body {
   height: 100%;

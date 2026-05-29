@@ -24,6 +24,9 @@
   <div class="expanded-card-content">
     <span class="expanded-card-title heading-sm">{{ card().title }}</span>
     @if (ready()) {
+      <p class="expanded-card-description body-sm">
+        {{ card().description }}
+      </p>
       <p class="expanded-card-content-text body-sm">
         {{ card().content }}
       </p>

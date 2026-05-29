@@ -4,6 +4,10 @@
   padding: 2rem;
   padding-top: 8rem;
   padding-bottom: 6rem;
+
+  @media (hover: none) and (pointer: coarse) {
+    padding-top: 2rem;
+  }
 }
 
 .resume-header {
