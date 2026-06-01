@@ -103,6 +103,11 @@ export class MovieCardsComponent {
     }
   }
 
+  onCardMouseEnter(): void {
+    if (!this.hoverEnabled()) return;
+    this.soundService.playWoosh();
+  }
+
   onCardClick(index: number, letterboxdUrl: string): void {
     this.pressedIndex.set(index);
     setTimeout(() => {

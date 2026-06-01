@@ -28,6 +28,7 @@
       [class.tooltip-item-sibling]="expandingIndex() !== null && expandingIndex() !== i"
       [class.tooltip-item-expanding]="expanding()"
       [style.--expand-transform]="expandingIndex() === i ? expandTransform() : 'scale(1)'"
+      (mouseenter)="onCardMouseEnter()"
       (mousedown)="soundService.playPress()"
       (click)="soundService.playRelease(); onCardClick(i, $event)"
       role="menuitem"

@@ -102,6 +102,11 @@ export class SoundService {
     this.play('open', (Math.random() * 2 - 1) * 1.5 - 8);
   }
 
+  /** Car-card individual hover — open file at +10 semitones, lighter/airier than fan-out (+5–9). */
+  playWoosh(): void {
+    this.play('open', (Math.random() * 2 - 1) * 1.5 + 10, 0.75);
+  }
+
   playClose(): void {
     this.play('close', (Math.random() * 2 - 1) * 2);
   }

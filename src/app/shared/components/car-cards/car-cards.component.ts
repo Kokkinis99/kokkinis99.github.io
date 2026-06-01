@@ -48,6 +48,7 @@ export class CarCardsComponent implements OnDestroy {
   readonly visible = signal(false);
   readonly alignLeft = signal(false);
   readonly alignRight = signal(false);
+  readonly hoverEnabled = signal(false);
   readonly expandingIndex = signal<number | null>(null);
   readonly expanding = signal(false);
   readonly expandTransform = signal<string>('scale(1)');
@@ -59,7 +60,9 @@ export class CarCardsComponent implements OnDestroy {
   private readonly tooltipWidth = 400;
   private readonly edgeMargin = 16;
   private readonly hideDelay = 100;
+  private readonly hoverEnableDelay = 300;
   private hideTimeout: ReturnType<typeof setTimeout> | null = null;
+  private hoverTimeout: ReturnType<typeof setTimeout> | null = null;
 
   public carCards = signal<CarCard[]>([
     {
@@ -86,6 +89,7 @@ export class CarCardsComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.clearHideTimeout();
+    this.clearHoverTimeout();
   }
 
   onMouseEnter(): void {
@@ -100,6 +104,9 @@ export class CarCardsComponent implements OnDestroy {
       this.carCards().forEach((_, i) => {
         setTimeout(() => this.soundService.playFan(i), fanDelays[i]);
       });
+      this.hoverTimeout = setTimeout(() => {
+        this.hoverEnabled.set(true);
+      }, this.hoverEnableDelay);
     }
   }
 
@@ -108,8 +115,15 @@ export class CarCardsComponent implements OnDestroy {
     this.clearHideTimeout();
     this.hideTimeout = setTimeout(() => {
       this.visible.set(false);
+      this.hoverEnabled.set(false);
+      this.clearHoverTimeout();
       this.soundService.playClose();
     }, this.hideDelay);
+  }
+
+  onCardMouseEnter(): void {
+    if (!this.hoverEnabled() || this.expanding()) return;
+    this.soundService.playWoosh();
   }
 
   onCardClick(index: number, event: MouseEvent): void {
@@ -186,6 +200,13 @@ export class CarCardsComponent implements OnDestroy {
     if (this.hideTimeout) {
       clearTimeout(this.hideTimeout);
       this.hideTimeout = null;
+    }
+  }
+
+  private clearHoverTimeout(): void {
+    if (this.hoverTimeout) {
+      clearTimeout(this.hoverTimeout);
+      this.hoverTimeout = null;
     }
   }
 

@@ -22,6 +22,7 @@
     <div
       class="tooltip-item"
       [class.pressed]="pressedIndex() === i"
+      (mouseenter)="onCardMouseEnter()"
       (mousedown)="soundService.playPress()"
       (click)="soundService.playRelease(); onCardClick(i, movieCard.letterboxdUrl)"
     >
