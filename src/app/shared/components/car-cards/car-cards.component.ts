@@ -9,6 +9,7 @@ import {
   ViewChild
 } from "@angular/core";
 import { CAR_CARD_BLOG_POSTS } from "../expanded-card/car-card-blog-posts/car-card-blog-post";
+import { SoundService } from "../../../core/services/sound.service";
 
 export interface CarCard {
   title: string;
@@ -40,6 +41,7 @@ const TIMING = {
 })
 export class CarCardsComponent implements OnDestroy {
   private readonly elementRef = inject(ElementRef);
+  readonly soundService = inject(SoundService);
 
   @ViewChild('trigger') triggerRef!: ElementRef<HTMLSpanElement>;
 
@@ -88,9 +90,17 @@ export class CarCardsComponent implements OnDestroy {
 
   onMouseEnter(): void {
     if (this.expanding()) return;
+    const wasVisible = this.visible();
     this.clearHideTimeout();
     this.calculatePosition();
     this.visible.set(true);
+    if (!wasVisible) {
+      this.soundService.playOpen();
+      const fanDelays = [100, 160, 160];
+      this.carCards().forEach((_, i) => {
+        setTimeout(() => this.soundService.playFan(i), fanDelays[i]);
+      });
+    }
   }
 
   onMouseLeave(): void {
@@ -98,6 +108,7 @@ export class CarCardsComponent implements OnDestroy {
     this.clearHideTimeout();
     this.hideTimeout = setTimeout(() => {
       this.visible.set(false);
+      this.soundService.playClose();
     }, this.hideDelay);
   }
 

@@ -22,7 +22,8 @@
     <div
       class="tooltip-item"
       [class.pressed]="pressedIndex() === i"
-      (click)="onCardClick(i, movieCard.letterboxdUrl)"
+      (mousedown)="soundService.playPress()"
+      (click)="soundService.playRelease(); onCardClick(i, movieCard.letterboxdUrl)"
     >
       <img [src]="movieCard.posterUrl" [alt]="movieCard.title" />
     </div>

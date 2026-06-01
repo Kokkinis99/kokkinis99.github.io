@@ -17,6 +17,11 @@
       />
       <div class="options">
         <app-icon-button
+          [icon]="soundService.muted() ? muteIcon : volumeIcon"
+          [ariaLabel]="soundService.muted() ? 'Unmute sound effects' : 'Mute sound effects'"
+          (clicked)="soundService.toggleMute()"
+        />
+        <app-icon-button
           [icon]="theme() === 'dark' ? sunIcon : moonIcon"
           ariaLabel="Toggle theme"
           [animate]="themeIconAnimating()"

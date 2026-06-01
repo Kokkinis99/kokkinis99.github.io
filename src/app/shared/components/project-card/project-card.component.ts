@@ -1,4 +1,5 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
+import { SoundService } from '../../../core/services/sound.service';
 
 @Component({
   selector: 'app-project-card',
@@ -9,7 +10,9 @@ import { Component, input, output } from '@angular/core';
         type="button"
         class="project-card"
         [attr.aria-label]="title()"
-        (click)="dialogType() === 'blog' ? blogOpen.emit() : dialogOpen.emit()"
+        (mouseenter)="soundService.playHover(0.3)"
+        (mousedown)="soundService.playPress()"
+        (click)="soundService.playRelease(); dialogType() === 'blog' ? blogOpen.emit() : dialogOpen.emit()"
       >
         <span class="body title">{{ title() }}</span>
         <p class="body description">{{ description() }}</p>
@@ -21,6 +24,9 @@ import { Component, input, output } from '@angular/core';
         rel="noopener noreferrer"
         class="project-card"
         [attr.aria-label]="title()"
+        (mouseenter)="soundService.playHover(0.3)"
+        (mousedown)="soundService.playPress()"
+        (click)="soundService.playRelease()"
       >
         <span class="body title">{{ title() }}</span>
         <p class="body description">{{ description() }}</p>
@@ -55,6 +61,10 @@ import { Component, input, output } from '@angular/core';
       }
     }
 
+    a.project-card:active {
+      transform: scale(0.97);
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .project-card {
         transition: none;
@@ -73,6 +83,8 @@ import { Component, input, output } from '@angular/core';
   `,
 })
 export class ProjectCardComponent {
+  readonly soundService = inject(SoundService);
+
   title = input.required<string>();
   description = input.required<string>();
   href = input.required<string>();

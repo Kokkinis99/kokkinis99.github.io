@@ -2,10 +2,12 @@ import {
   Component,
   HostListener,
   OnInit,
+  inject,
   input,
   output,
   signal,
 } from '@angular/core';
+import { SoundService } from '../../../core/services/sound.service';
 
 const TIMING = {
   fadeOut: 200,
@@ -18,6 +20,8 @@ const TIMING = {
   styleUrl: './blog-post-dialog.component.scss',
 })
 export class BlogPostDialogComponent implements OnInit {
+  private readonly soundService = inject(SoundService);
+
   readonly title = input.required<string>();
   readonly content = input.required<string>();
 
@@ -28,6 +32,7 @@ export class BlogPostDialogComponent implements OnInit {
   readonly closing = signal(false);
 
   ngOnInit(): void {
+    this.soundService.playOpen();
     requestAnimationFrame(() => {
       this.ready.set(true);
     });
@@ -35,6 +40,7 @@ export class BlogPostDialogComponent implements OnInit {
 
   close(): void {
     if (this.closing()) return;
+    this.soundService.playClose();
     this.closing.set(true);
     this.closingStarted.emit();
     setTimeout(() => this.closed.emit(), TIMING.fadeOut);

@@ -19,7 +19,7 @@
   [attr.aria-hidden]="!visible()"
 >
   <div class="tooltip-item">
-    <div class="tooltip-item-inner" (click)="onCardClick()">
+    <div class="tooltip-item-inner" (mousedown)="soundService.playPress()" (click)="soundService.playRelease(); onCardClick()">
       <div class="disc-wrapper">
         <img [src]="song().imageUrl" [alt]="song().title" />
       </div>

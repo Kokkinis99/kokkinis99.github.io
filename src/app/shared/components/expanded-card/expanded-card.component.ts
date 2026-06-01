@@ -1,5 +1,6 @@
 import {
   Component,
+  inject,
   input,
   output,
   signal,
@@ -7,6 +8,7 @@ import {
   HostListener
 } from "@angular/core";
 import { CarCard } from "../car-cards/car-cards.component";
+import { SoundService } from "../../../core/services/sound.service";
 
 const TIMING = {
   fadeOut: 200,
@@ -19,6 +21,8 @@ const TIMING = {
   styleUrls: ['./expanded-card.component.scss'],
 })
 export class ExpandedCardComponent implements OnInit {
+  private readonly soundService = inject(SoundService);
+
   readonly card = input.required<CarCard>();
 
   readonly closed = output<void>();
@@ -28,13 +32,18 @@ export class ExpandedCardComponent implements OnInit {
   readonly closing = signal(false);
 
   ngOnInit(): void {
+    this.soundService.playOpen();
     requestAnimationFrame(() => {
       this.ready.set(true);
     });
+    if (this.card().image2) {
+      setTimeout(() => this.soundService.playSlide(), 750);
+    }
   }
 
   close(): void {
     if (this.closing()) return;
+    this.soundService.playClose();
     this.closing.set(true);
     this.closingStarted.emit();
     setTimeout(() => this.closed.emit(), TIMING.fadeOut);

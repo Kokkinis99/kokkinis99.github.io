@@ -36,6 +36,17 @@ $sibling-fade-duration: 250ms;
   visibility: hidden;
   pointer-events: none;
 
+  // Fills the 12px gap between trigger and tooltip so the tooltip
+  // doesn't close when the mouse passes through that space
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    right: 0;
+    height: 12px;
+  }
+
   // Exit: opacity first, then transform (both after cards collapse)
   transition:
     opacity var(--duration-standard) var(--ease-out-quart) var(--duration-fast),

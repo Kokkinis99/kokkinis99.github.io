@@ -28,6 +28,17 @@
   padding: 12px;
   min-width: 200px;
 
+  // Fills the 8px gap between trigger and tooltip so the tooltip
+  // doesn't close when the mouse passes through that space
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 8px;
+  }
+
   // Hidden state (default)
   opacity: 0;
   transform: translateX(-50%) scale(0.15);

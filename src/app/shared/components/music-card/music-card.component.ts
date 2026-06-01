@@ -1,5 +1,6 @@
 import { Component, inject, signal, computed, OnInit } from "@angular/core";
 import { LastFmService } from "../../../core/services/lastfm.service";
+import { SoundService } from "../../../core/services/sound.service";
 
 @Component({
   selector: 'app-music-card',
@@ -8,6 +9,7 @@ import { LastFmService } from "../../../core/services/lastfm.service";
 })
 export class MusicCardComponent implements OnInit {
   private readonly lastFm = inject(LastFmService);
+  readonly soundService = inject(SoundService);
 
   readonly song = computed(() => {
     const track = this.lastFm.track();
@@ -40,6 +42,7 @@ export class MusicCardComponent implements OnInit {
     this.visible.set(true);
 
     if (!wasAlreadyVisible) {
+      this.soundService.playOpen();
       this.hoverTimeout = setTimeout(() => {
         this.hoverEnabled.set(true);
       }, this.hoverEnableDelay);
@@ -52,6 +55,7 @@ export class MusicCardComponent implements OnInit {
       this.visible.set(false);
       this.hoverEnabled.set(false);
       this.clearHoverTimeout();
+      this.soundService.playClose();
     }, this.hideDelay);
   }
 

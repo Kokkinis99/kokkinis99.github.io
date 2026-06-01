@@ -6,8 +6,11 @@ import {
   Sun,
   Mail,
   FileUser,
+  Volume2,
+  VolumeX,
 } from 'lucide-angular';
 import { ThemeService } from '../../core/services/theme.service';
+import { SoundService } from '../../core/services/sound.service';
 import { DeviceService } from '../../core/services/device.service';
 import { IconButtonComponent } from '../../shared/components/icon-button/icon-button.component';
 import { ProjectCardComponent } from '../../shared/components/project-card/project-card.component';
@@ -49,6 +52,7 @@ export class HomeComponent {
   private readonly themeService = inject(ThemeService);
   private readonly router = inject(Router);
   readonly deviceService = inject(DeviceService);
+  readonly soundService = inject(SoundService);
 
   @ViewChild(CarCardsComponent) carCardsRef!: CarCardsComponent;
 
@@ -75,6 +79,8 @@ export class HomeComponent {
   readonly sunIcon = Sun;
   readonly mailIcon = Mail;
   readonly resumeIcon = FileUser;
+  readonly volumeIcon = Volume2;
+  readonly muteIcon = VolumeX;
 
   readonly projects = signal<Project[]>(HOME_PROJECTS);
   readonly posts = signal<Project[]>(HOME_POSTS);

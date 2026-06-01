@@ -9,6 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { GymDataService } from '../../../core/services/gym-data.service';
+import { SoundService } from '../../../core/services/sound.service';
 import {
   LucideAngularModule,
   Dumbbell,
@@ -26,6 +27,7 @@ import {
 })
 export class GymTooltipComponent implements OnInit, OnDestroy {
   private readonly gymDataService = inject(GymDataService);
+  private readonly soundService = inject(SoundService);
   private readonly elementRef = inject(ElementRef);
 
   @ViewChild('trigger') triggerRef!: ElementRef<HTMLSpanElement>;
@@ -56,15 +58,18 @@ export class GymTooltipComponent implements OnInit, OnDestroy {
   }
 
   onMouseEnter(): void {
+    const wasVisible = this.visible();
     this.clearHideTimeout();
     this.calculatePosition();
     this.visible.set(true);
+    if (!wasVisible) this.soundService.playOpen();
   }
 
   onMouseLeave(): void {
     this.clearHideTimeout();
     this.hideTimeout = setTimeout(() => {
       this.visible.set(false);
+      this.soundService.playClose();
     }, this.hideDelay);
   }
 

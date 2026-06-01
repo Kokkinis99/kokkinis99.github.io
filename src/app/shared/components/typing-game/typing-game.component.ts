@@ -1,6 +1,7 @@
-import { Component, computed, effect, ElementRef, HostListener, output, signal, viewChild } from "@angular/core";
+import { Component, computed, effect, ElementRef, HostListener, inject, output, signal, viewChild } from "@angular/core";
 import { WORDS } from "../../words";
 import { LucideAngularModule, RotateCw, X } from "lucide-angular";
+import { SoundService } from "../../../core/services/sound.service";
 
 const GHOST_WPM = {
   '25words': 152,
@@ -17,6 +18,8 @@ const FADE_OUT_DURATION = 150;
   imports: [LucideAngularModule]
 })
 export class TypingGameComponent {
+  readonly soundService = inject(SoundService);
+
   @HostListener('document:keydown', ['$event'])
   protected handleKeyDown(event: KeyboardEvent): void {
     if (this.gameState() === 'idle' || this.gameState() === 'finished') return;

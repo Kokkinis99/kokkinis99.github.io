@@ -2,9 +2,11 @@ import {
   Component,
   HostListener,
   OnInit,
+  inject,
   output,
   signal,
 } from '@angular/core';
+import { SoundService } from '../../../core/services/sound.service';
 
 const HREF = 'https://moodtune.kokkin.is';
 
@@ -37,6 +39,8 @@ type ExpandingCircle = { x: number; y: number; color: string };
   styleUrl: './mood-tune-dialog.component.scss',
 })
 export class MoodTuneDialogComponent implements OnInit {
+  private readonly soundService = inject(SoundService);
+
   readonly closed = output<void>();
   readonly closingStarted = output<void>();
   readonly triggerSelected = output<MoodTriggerSelection>();
@@ -70,6 +74,7 @@ export class MoodTuneDialogComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.soundService.playOpen();
     requestAnimationFrame(() => {
       this.panelReady.set(true);
     });
@@ -79,9 +84,18 @@ export class MoodTuneDialogComponent implements OnInit {
     if (this.closing() || this.expandingCircle()) {
       return;
     }
+    this.soundService.playClose();
     this.closing.set(true);
     this.closingStarted.emit();
     setTimeout(() => this.closed.emit(), TIMING.motionMs);
+  }
+
+  onTriggerHovered(): void {
+    this.soundService.playHover(0.3);
+  }
+
+  onTriggerPressed(): void {
+    this.soundService.playPress();
   }
 
   onTriggerSelect(
@@ -89,6 +103,7 @@ export class MoodTuneDialogComponent implements OnInit {
     trigger: MoodTrigger,
     index: number,
   ): void {
+    this.soundService.playRelease();
     const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
     this.expandingCircle.set({
       x: rect.left + rect.width / 2,

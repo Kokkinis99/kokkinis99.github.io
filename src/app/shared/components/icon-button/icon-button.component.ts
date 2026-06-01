@@ -1,5 +1,6 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { LucideAngularModule, LucideIconData } from 'lucide-angular';
+import { SoundService } from '../../../core/services/sound.service';
 
 @Component({
   selector: 'app-icon-button',
@@ -9,7 +10,8 @@ import { LucideAngularModule, LucideIconData } from 'lucide-angular';
     <button
       class="icon-button"
       [attr.aria-label]="ariaLabel()"
-      (click)="clicked.emit()"
+      (mouseenter)="soundService.playHoverHigh()"
+      (click)="soundService.playPress(); clicked.emit()"
     >
       <i-lucide [img]="icon()" [size]="16" class="icon" [class.icon-enter]="animate()" />
     </button>
@@ -50,6 +52,8 @@ import { LucideAngularModule, LucideIconData } from 'lucide-angular';
   `,
 })
 export class IconButtonComponent {
+  readonly soundService = inject(SoundService);
+
   icon = input.required<LucideIconData>();
   ariaLabel = input.required<string>();
   animate = input(false);

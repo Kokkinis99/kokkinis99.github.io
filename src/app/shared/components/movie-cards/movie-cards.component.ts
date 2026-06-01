@@ -1,4 +1,5 @@
 import { Component, ElementRef, inject, signal, ViewChild } from "@angular/core";
+import { SoundService } from "../../../core/services/sound.service";
 
 interface MovieCard {
   title: string;
@@ -36,6 +37,7 @@ const movieCards: MovieCard[] = [
 })
 export class MovieCardsComponent {
   private readonly elementRef = inject(ElementRef);
+  readonly soundService = inject(SoundService);
 
   @ViewChild('trigger') triggerRef!: ElementRef<HTMLSpanElement>;
 
@@ -66,6 +68,11 @@ export class MovieCardsComponent {
       this.hoverTimeout = setTimeout(() => {
         this.hoverEnabled.set(true);
       }, this.hoverEnableDelay);
+
+      // One open sound per card, staggered to match CSS transition-delay (50ms each)
+      this.movieCards().forEach((_, i) => {
+        setTimeout(() => this.soundService.playOpen(), i * 50);
+      });
     }
   }
 
@@ -75,6 +82,10 @@ export class MovieCardsComponent {
       this.visible.set(false);
       this.hoverEnabled.set(false);
       this.clearHoverTimeout();
+      // Exit stagger is reversed (last card first), matching CSS transition-delay
+      this.movieCards().forEach((_, i) => {
+        setTimeout(() => this.soundService.playClose(), (this.movieCards().length - 1 - i) * 50);
+      });
     }, this.hideDelay);
   }
 

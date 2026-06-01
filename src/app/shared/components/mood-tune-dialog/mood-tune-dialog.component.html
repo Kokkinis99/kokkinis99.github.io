@@ -20,6 +20,8 @@
       class="mood-tune-dialog-trigger-button"
       [attr.aria-label]="'Select ' + trigger.title + ' mood'"
       [style.--i]="i"
+      (mouseenter)="onTriggerHovered()"
+      (mousedown)="onTriggerPressed()"
       (click)="onTriggerSelect($event, trigger, i)"
     >
       <img

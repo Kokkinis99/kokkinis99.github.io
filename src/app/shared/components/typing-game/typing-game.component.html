@@ -7,7 +7,7 @@
     </p>
     <div class="action-container">
       <p class="body">Think you can beat me?</p>
-      <button class="game-idle-button" (click)="startGame()">Let's see</button>
+      <button class="game-idle-button" (mousedown)="soundService.playPress()" (click)="soundService.playRelease(); startGame()">Let's see</button>
     </div>
   </div>
 }
@@ -19,7 +19,7 @@
         {{ timeRemaining() }}
       </div>
     }
-    <button class="exit-button" (click)="exitGame()">
+    <button class="exit-button" (click)="soundService.playPress(); exitGame()">
       <i-lucide [img]="exitGameIcon" [size]="18" class="exit-icon" />
     </button>
   </div>
@@ -29,10 +29,10 @@
   <div class="game-mode-container" [class.fading-out]="cardsFadingOut()">
     <span class="heading-sm">Select game mode</span>
     <div class="cards-container">
-      <button class="card" (click)="selectMode('25words')">
+      <button class="card" (mousedown)="soundService.playPress()" (click)="soundService.playRelease(); selectMode('25words')">
         25 words
       </button>
-      <button class="card" (click)="selectMode('60seconds')">
+      <button class="card" (mousedown)="soundService.playPress()" (click)="soundService.playRelease(); selectMode('60seconds')">
         60 seconds
       </button>
     </div>
@@ -56,7 +56,7 @@
   </div>
 
   <div class="restart-container">
-    <button class="restart-button" (click)="restartGame()" #restartBtn>
+    <button class="restart-button" (click)="soundService.playPress(); restartGame()" #restartBtn>
       <i-lucide [img]="restartGameIcon" [size]="18" class="restart-icon" />
     </button>
   </div>
