@@ -45,39 +45,41 @@ export class MovieCardsComponent {
   readonly hoverEnabled = signal(false);
   readonly pressedIndex = signal<number | null>(null);
 
+  private readonly showDelay = 150;
   private readonly hideDelay = 100;
   private readonly hoverEnableDelay = 300;
   private readonly pressDuration = 100;
+  private showTimeout: ReturnType<typeof setTimeout> | null = null;
   private hideTimeout: ReturnType<typeof setTimeout> | null = null;
   private hoverTimeout: ReturnType<typeof setTimeout> | null = null;
 
   public movieCards = signal<MovieCard[]>(movieCards);
 
   ngOnDestroy(): void {
+    this.clearShowTimeout();
     this.clearHideTimeout();
     this.clearHoverTimeout();
   }
 
   onMouseEnter(): void {
-    const wasAlreadyVisible = this.visible();
     this.clearHideTimeout();
-    this.visible.set(true);
-
-    // Only start hover timeout if tooltip wasn't already visible
-    if (!wasAlreadyVisible) {
+    if (this.visible()) return;
+    this.showTimeout = setTimeout(() => {
+      this.visible.set(true);
       this.hoverTimeout = setTimeout(() => {
         this.hoverEnabled.set(true);
       }, this.hoverEnableDelay);
-
       // One open sound per card, staggered to match CSS transition-delay (50ms each)
       this.movieCards().forEach((_, i) => {
         setTimeout(() => this.soundService.playOpen(), i * 50);
       });
-    }
+    }, this.showDelay);
   }
 
   onMouseLeave(): void {
+    this.clearShowTimeout();
     this.clearHideTimeout();
+    if (!this.visible()) return;
     this.hideTimeout = setTimeout(() => {
       this.visible.set(false);
       this.hoverEnabled.set(false);
@@ -87,6 +89,13 @@ export class MovieCardsComponent {
         setTimeout(() => this.soundService.playClose(), (this.movieCards().length - 1 - i) * 50);
       });
     }, this.hideDelay);
+  }
+
+  private clearShowTimeout(): void {
+    if (this.showTimeout) {
+      clearTimeout(this.showTimeout);
+      this.showTimeout = null;
+    }
   }
 
   private clearHideTimeout(): void {

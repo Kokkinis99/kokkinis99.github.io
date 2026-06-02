@@ -25,38 +25,49 @@ export class MusicCardComponent implements OnInit {
   readonly visible = signal(false);
   readonly hoverEnabled = signal(false);
 
+  private readonly showDelay = 150;
   private readonly hideDelay = 100;
   private readonly hoverEnableDelay = 300;
   private readonly pressDuration = 100;
+  private showTimeout: ReturnType<typeof setTimeout> | null = null;
   private hideTimeout: ReturnType<typeof setTimeout> | null = null;
   private hoverTimeout: ReturnType<typeof setTimeout> | null = null;
 
   ngOnDestroy(): void {
+    this.clearShowTimeout();
     this.clearHideTimeout();
     this.clearHoverTimeout();
   }
 
   onMouseEnter(): void {
-    const wasAlreadyVisible = this.visible();
     this.clearHideTimeout();
-    this.visible.set(true);
-
-    if (!wasAlreadyVisible) {
+    if (this.visible()) return;
+    this.showTimeout = setTimeout(() => {
+      this.visible.set(true);
       this.soundService.playOpen();
       this.hoverTimeout = setTimeout(() => {
         this.hoverEnabled.set(true);
       }, this.hoverEnableDelay);
-    }
+    }, this.showDelay);
   }
 
   onMouseLeave(): void {
+    this.clearShowTimeout();
     this.clearHideTimeout();
+    if (!this.visible()) return;
     this.hideTimeout = setTimeout(() => {
       this.visible.set(false);
       this.hoverEnabled.set(false);
       this.clearHoverTimeout();
       this.soundService.playClose();
     }, this.hideDelay);
+  }
+
+  private clearShowTimeout(): void {
+    if (this.showTimeout) {
+      clearTimeout(this.showTimeout);
+      this.showTimeout = null;
+    }
   }
 
   private clearHideTimeout(): void {

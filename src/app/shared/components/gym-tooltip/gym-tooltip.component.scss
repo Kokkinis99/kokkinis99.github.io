@@ -22,8 +22,8 @@
   transform-origin: bottom center;
   z-index: 1000;
 
-  background: var(--color-bg);
-  border: 1px solid var(--color-hover);
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
   border-radius: 8px;
   padding: 12px;
   min-width: 200px;
@@ -62,9 +62,7 @@
   transform: translateX(-50%) scale(1);
   visibility: visible;
   pointer-events: auto;
-  box-shadow:
-    0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  box-shadow: var(--card-shadow);
 
   // Enter transition
   transition:

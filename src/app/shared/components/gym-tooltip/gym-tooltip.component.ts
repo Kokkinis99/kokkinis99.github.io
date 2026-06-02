@@ -46,7 +46,9 @@ export class GymTooltipComponent implements OnInit, OnDestroy {
 
   private readonly tooltipWidth = 400;
   private readonly edgeMargin = 16;
+  private readonly showDelay = 150;
   private readonly hideDelay = 100;
+  private showTimeout: ReturnType<typeof setTimeout> | null = null;
   private hideTimeout: ReturnType<typeof setTimeout> | null = null;
 
   ngOnInit(): void {
@@ -54,23 +56,35 @@ export class GymTooltipComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.clearShowTimeout();
     this.clearHideTimeout();
   }
 
   onMouseEnter(): void {
-    const wasVisible = this.visible();
     this.clearHideTimeout();
-    this.calculatePosition();
-    this.visible.set(true);
-    if (!wasVisible) this.soundService.playOpen();
+    if (this.visible()) return;
+    this.showTimeout = setTimeout(() => {
+      this.calculatePosition();
+      this.visible.set(true);
+      this.soundService.playOpen();
+    }, this.showDelay);
   }
 
   onMouseLeave(): void {
+    this.clearShowTimeout();
     this.clearHideTimeout();
+    if (!this.visible()) return;
     this.hideTimeout = setTimeout(() => {
       this.visible.set(false);
       this.soundService.playClose();
     }, this.hideDelay);
+  }
+
+  private clearShowTimeout(): void {
+    if (this.showTimeout) {
+      clearTimeout(this.showTimeout);
+      this.showTimeout = null;
+    }
   }
 
   private clearHideTimeout(): void {

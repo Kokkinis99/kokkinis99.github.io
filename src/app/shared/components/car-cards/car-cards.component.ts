@@ -59,8 +59,10 @@ export class CarCardsComponent implements OnDestroy {
   private readonly cardHeight = 220;
   private readonly tooltipWidth = 400;
   private readonly edgeMargin = 16;
+  private readonly showDelay = 150;
   private readonly hideDelay = 100;
   private readonly hoverEnableDelay = 300;
+  private showTimeout: ReturnType<typeof setTimeout> | null = null;
   private hideTimeout: ReturnType<typeof setTimeout> | null = null;
   private hoverTimeout: ReturnType<typeof setTimeout> | null = null;
 
@@ -88,17 +90,18 @@ export class CarCardsComponent implements OnDestroy {
   ]);
 
   ngOnDestroy(): void {
+    this.clearShowTimeout();
     this.clearHideTimeout();
     this.clearHoverTimeout();
   }
 
   onMouseEnter(): void {
     if (this.expanding()) return;
-    const wasVisible = this.visible();
     this.clearHideTimeout();
-    this.calculatePosition();
-    this.visible.set(true);
-    if (!wasVisible) {
+    if (this.visible()) return;
+    this.showTimeout = setTimeout(() => {
+      this.calculatePosition();
+      this.visible.set(true);
       this.soundService.playOpen();
       const fanDelays = [100, 160, 160];
       this.carCards().forEach((_, i) => {
@@ -107,12 +110,14 @@ export class CarCardsComponent implements OnDestroy {
       this.hoverTimeout = setTimeout(() => {
         this.hoverEnabled.set(true);
       }, this.hoverEnableDelay);
-    }
+    }, this.showDelay);
   }
 
   onMouseLeave(): void {
     if (this.expanding()) return;
+    this.clearShowTimeout();
     this.clearHideTimeout();
+    if (!this.visible()) return;
     this.hideTimeout = setTimeout(() => {
       this.visible.set(false);
       this.hoverEnabled.set(false);
@@ -195,6 +200,13 @@ export class CarCardsComponent implements OnDestroy {
     this.visible.set(false);
   }
 
+
+  private clearShowTimeout(): void {
+    if (this.showTimeout) {
+      clearTimeout(this.showTimeout);
+      this.showTimeout = null;
+    }
+  }
 
   private clearHideTimeout(): void {
     if (this.hideTimeout) {

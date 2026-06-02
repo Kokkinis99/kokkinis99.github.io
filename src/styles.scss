@@ -31,6 +31,11 @@
   --color-backdrop: hsl(0 0% 98% / 0.1);
   --color-backdrop-closing: hsl(0 0% 98% / 0);
   --color-gold: hsl(43, 90%, 40%);
+  --color-card-bg: var(--color-bg);
+  --color-card-border: var(--color-hover);
+  --card-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
 
   --color-text-incorrect: hsl(0, 100%, 61%);
   --color-text-ghost: hsl(0, 0%, 44%); // TODO: figure out a color
@@ -72,6 +77,11 @@
   --color-text-link: hsl(0 0% 80%);
   --color-hover: hsl(0 0% 98% / 0.2);
   --color-gold: hsl(51, 100%, 50%);
+  --color-card-bg: hsl(0 0% 14%);
+  --color-card-border: transparent;
+  --card-shadow:
+    0 4px 12px -1px rgb(0 0 0 / 0.4),
+    0 2px 6px -2px rgb(0 0 0 / 0.3);
 }
 
 // =============================================================================

@@ -112,6 +112,10 @@
   }
 }
 
+:host-context([data-theme='dark']) .mood-tune-dialog-panel {
+  box-shadow: var(--card-shadow);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mood-tune-dialog-backdrop,
   .mood-tune-dialog-panel,

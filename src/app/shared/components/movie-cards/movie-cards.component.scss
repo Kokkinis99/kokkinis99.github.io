@@ -93,7 +93,8 @@
   overflow: hidden;
   margin-inline-start: -75px;
   padding: 5px;
-  background: var(--color-bg);
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-card-border);
   pointer-events: none;
 
   opacity: 0;
@@ -105,9 +106,7 @@
     opacity var(--duration-micro) var(--ease-out-quart),
     scale var(--duration-micro) var(--ease-out-quart);
 
-  box-shadow:
-    0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
+  box-shadow: var(--card-shadow);
 
   &:first-child {
     margin-inline-start: 0;
