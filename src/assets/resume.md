@@ -14,14 +14,14 @@ Frontend Engineer with 5+ years building production UIs where technical depth an
 ## Experience
 
 ### Covve - Frontend Engineer
-*Athens, Greece · 2021 – Present*
+*Athens, Greece · 2021 - Present*
 
 Covve is the leading AI-powered business card scanning and CRM app, available on iOS and Android. As the sole frontend engineer on a cross-functional team, I own all UI implementation on the mobile app, and both design and implementation on the admin web portal.
 
 **Mobile app: Ionic/Angular**
 
 - **Rebranding (2026):** Led the complete migration of the color and typography system, updating every component, modal, and screen for a full product rebrand
-- **Dark mode system:** Designed and implemented a full dark mode layer using CSS custom properties, creating a design token architecture spanning the entire application across every screen and component
+- **Dark mode system:** Designed and implemented a full dark mode layer with CSS custom properties and a design token architecture that spans the entire app
 - **eCard (digital business card):** Migrated Covve's digital business card product from another app, adapting the data model, reactive form architecture, UI, and animations, including "Set as Primary" functionality and cross-device sync
 - **Onboarding & paywalls:** Ran UX research and led implementation of onboarding flows, upgrade screens, limited-time offer modals, and paywall logic. Research directly informed decisions that improved conversions
 - **Performance:** Replaced Lottie animations with hand-crafted SVG animations for finer control over timing and visual quality
@@ -50,7 +50,7 @@ A mood diary that generates personalised Spotify playlists based on your emotion
 - **Full OAuth integration:** Implemented Spotify PKCE authentication flow with token refresh and deep link callback
 - **Mood-adaptive theming:** App-wide theme system (happy/sad/calm/angry) with radial gradients, CSS variables, and dynamic app icons that update per mood
 - **Spotify playlist generation:** Three recommendation modes (familiar/default/experimental) using mood-weighted audio features from the Reccobeats API, parsed and forwarded to Spotify to create personalised playlists
-- **Achievement system:** 50+ achievements across rarity tiers, tracked with incremental counters for performance, no full-scan queries
+- **Achievement system:** 50+ achievements across rarity tiers, tracked with incremental counters instead of full-scan queries
 - **Calendar & streaks:** Interactive mood calendar with streak tracking, broken-streak modals, and consecutive mood-week celebrations. Broken streak animation [featured in Josh Comeau's Whimsical Animations newsletter](https://www.joshwcomeau.com/email/wham-launch-009-student-showcase/)
 - **Statistics dashboard:** Mood frequency charts, emotional personality insights, and artist suggestion breakdowns
 - **Firebase backend:** Firestore with month-scoped partitioning, Cloud Functions for Spotify token exchange, Storage for entry images
@@ -63,6 +63,13 @@ A mood diary that generates personalised Spotify playlists based on your emotion
 *Open Source, Angular Component Library*
 
 Sonner-inspired toast notification system for Angular, built on ng-primitives. Endorsed by the ng-primitives author. Composable, animation-first, fully accessible.
+
+### ng-primitives
+[github.com/ng-primitives/ng-primitives](https://github.com/ng-primitives/ng-primitives)
+
+*Open Source Contributor*
+
+Contributor to ng-primitives, a headless, composable primitives library for building accessible Angular UIs. Both Kodon and the Covve admin portal are built on it.
 
 ### Portfolio · kokkin.is
 *Angular 19 · TypeScript · SCSS*
@@ -99,3 +106,4 @@ National and Kapodistrian University of Athens · Department of Informatics
 | InterfaceCraft | Josh Puckett | Completed, Founding Member |
 | Animations on the Web | Emil Kowalski | Completed |
 | CSS for JavaScript Developers | Josh Comeau | In Progress |
+| AI for Designers and Engineers | Emil Kowalski (aiforui.dev) | Early access tester |
