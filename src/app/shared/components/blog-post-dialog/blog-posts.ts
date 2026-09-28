@@ -54,47 +54,45 @@ export const BLOG_POSTS = {
   vakaiRedesign: {
     title: 'Redesigning VaKAI',
     content:`
-    Recently I got to redesign the landing page for VaKAI.
-    They make monitoring software for biogas plants, and their pitch is actually really good:
+    My brother is working on a startup called VaKAI, and I got to redesign their landing page.
+    They make monitoring software for biogas plants, and the pitch is really good:
     VaKAI spots digester problems days before the lab report does.
 
-    The old page had that story. The design just kept getting in the way.
-    The headline, "Get more from every digester", could belong to any supplier.
-    It looked like every other template out there, gradients, glows, the lot.
-    And the product itself, the thing that actually sells software, was halfway down the page.
+    The old page did tell that story, the design just kept getting in the way.
+    The headline was "Get more from every digester", which could belong to any supplier.
+    It also looked a lot like a template, with gradient buttons and glows everywhere.
+    And you had to scroll halfway down the page before you saw the product at all.
 
     So here's what I changed:
 
     1. The story first:
-      Plants wait around eight days for lab results. That's eight days blind.
-      It's VaKAI's strongest argument, so I built the whole page around it.
-      The headline now just says it: catch digester problems days before the lab does.
-      The "without" and "with VaKAI" sections mirror each other.
-      A day strip you can click compares each day both ways.
-      And a chart plays one feedstock change both ways, where the space between the two lines is the gas kept.
+      A plant can wait around eight days for lab results, and during that time nobody really knows what's going on inside the digester.
+      That's VaKAI's best argument, so I built the whole page around it.
+      The headline now says it straight: catch digester problems days before the lab does.
+      Then the "without" and "with VaKAI" sections mirror each other.
+      There's a day strip you can click to compare each day both ways,
+      and a chart that plays one feedstock change both ways. The space between the two lines is the gas you kept.
 
     2. One idea for the whole identity:
-      The new logo is a 4x5 pixel grid.
-      A solid base (the digester) that thins out into green pixels (the gas).
-      The same square pixels run through the photos, which go through a dither shader.
-      So the page opens on a sunset sky and ends on the fields the product actually serves.
-      I tried four other logo directions before this one.
-      It was the only one that explained the product and still worked as a favicon.
+      The new logo is a tiny 4x5 pixel grid, a solid base (the digester) that thins out into green pixels (the gas).
+      I ran the photos through a dither shader so they're made of the same square pixels.
+      The page opens on a sunset sky and ends on the fields, which I really like.
+      I went through four other logo directions before this one.
+      This was the only one that said something about the product and still looked good as a favicon.
 
-    3. Colour that means something:
+    3. Colour:
       The old page used bright green everywhere, even on the words describing the problem.
-      Now green means good and orange means danger. That's it.
+      Now green is only for good outcomes and orange is only for risk.
 
-    4. What I didn't do:
-      No fade-ups on every section while you scroll.
-      No fake testimonials or logo walls.
-      No new claims, everything on the page comes from their existing site, and every example number is labelled as example data.
-      Honestly, this part took the most discipline.
+    4. What I left out:
+      I didn't add fade-in animations on every section as you scroll.
+      I didn't add testimonials, a logo wall or user counts just to make it look busier.
+      Every claim on the page comes from the existing site, and all the numbers in the demo are labelled as example data.
+      Leaving stuff out was harder than adding it, haha.
 
     Emil's animation skill and transitions.dev helped a lot with the motion and the small interactions.
-    But what the page is about, and what to leave out, those were the real decisions.
-    I wrote every single one down, including the ones I rejected.
-    I think that decision log ended up being just as useful to the client as the page itself.
+    I also wrote down every decision I made, including the directions I dropped and why.
+    I think that log is worth as much as the page, because anyone who touches the site next can see why things look the way they do.
     `,
   },
 };
