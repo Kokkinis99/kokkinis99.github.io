@@ -27,6 +27,14 @@ export const HOME_PROJECTS: Project[] = [
 
 export const HOME_POSTS: Project[] = [
   {
+    title: BLOG_POSTS.vakaiRedesign.title,
+    description: 'Rebuilding a biogas landing page around one story',
+    href: 'https://kokkin.is/redesigning-vakai',
+    opensDialog: true,
+    dialogType: 'blog',
+    content: BLOG_POSTS.vakaiRedesign.content,
+  },
+  {
     title: 'Josh W. Comeau Student Showcase',
     description:
       "My app's animation got featured on Josh W. Comeau's newsletter!",
