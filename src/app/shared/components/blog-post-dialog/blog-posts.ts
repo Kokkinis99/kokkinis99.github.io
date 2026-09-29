@@ -1,6 +1,13 @@
+export type BlogPostImage = {
+  src: string;
+  alt: string;
+  caption: string;
+};
+
 export type BlogPost = {
   title: string;
   content: string;
+  images?: BlogPostImage[];
 };
 
 export const BLOG_POSTS = {
@@ -53,6 +60,18 @@ export const BLOG_POSTS = {
   },
   vakaiRedesign: {
     title: 'Redesigning VaKAI',
+    images: [
+      {
+        src: 'assets/images/vakai/before.jpg',
+        alt: 'The old VaKAI landing page: a green "Get more from every digester" headline over a washed-out farm photo',
+        caption: 'Before',
+      },
+      {
+        src: 'assets/images/vakai/after.jpg',
+        alt: 'The redesigned VaKAI landing page: "Catch digester problems days before the lab does" over a dithered sunset, with the dashboard below',
+        caption: 'After',
+      },
+    ],
     content:`
     My brother is working on a startup called VaKAI, and I got to redesign their landing page.
     They make monitoring software for biogas plants, and the pitch is really good:
@@ -95,4 +114,4 @@ export const BLOG_POSTS = {
     I think that log is worth as much as the page, because anyone who touches the site next can see why things look the way they do.
     `,
   },
-};
+} satisfies Record<string, BlogPost>;

@@ -25,6 +25,16 @@
   </div>
 
   <div class="panel-body">
+    @if (images().length) {
+      <div class="images">
+        @for (image of images(); track image.src) {
+          <figure class="image">
+            <img [src]="image.src" [alt]="image.alt" width="1120" height="700" decoding="async" />
+            <figcaption class="body-sm">{{ image.caption }}</figcaption>
+          </figure>
+        }
+      </div>
+    }
     <p class="body-sm content-text">{{ content() }}</p>
   </div>
 </div>

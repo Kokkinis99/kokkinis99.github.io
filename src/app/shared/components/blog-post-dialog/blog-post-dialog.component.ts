@@ -8,6 +8,7 @@ import {
   signal,
 } from '@angular/core';
 import { SoundService } from '../../../core/services/sound.service';
+import { BlogPostImage } from './blog-posts';
 
 const TIMING = {
   fadeOut: 200,
@@ -24,6 +25,7 @@ export class BlogPostDialogComponent implements OnInit {
 
   readonly title = input.required<string>();
   readonly content = input.required<string>();
+  readonly images = input<BlogPostImage[]>([]);
 
   readonly closed = output<void>();
   readonly closingStarted = output<void>();

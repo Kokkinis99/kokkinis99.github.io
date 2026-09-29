@@ -104,6 +104,7 @@
   <app-blog-post-dialog
     [title]="blogPostDialogPost()!.title"
     [content]="blogPostDialogPost()!.content!"
+    [images]="blogPostDialogPost()!.images ?? []"
     (closingStarted)="onBlogPostClosingStarted()"
     (closed)="closeBlogPostDialog()"
   />

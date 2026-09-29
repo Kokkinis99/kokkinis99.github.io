@@ -1,4 +1,7 @@
-import { BLOG_POSTS } from '../../shared/components/blog-post-dialog/blog-posts';
+import {
+  BLOG_POSTS,
+  BlogPostImage,
+} from '../../shared/components/blog-post-dialog/blog-posts';
 
 export type Project = {
   title: string;
@@ -7,6 +10,7 @@ export type Project = {
   opensDialog?: boolean;
   dialogType?: 'moodtune' | 'blog';
   content?: string;
+  images?: BlogPostImage[];
 };
 
 export const HOME_PROJECTS: Project[] = [
@@ -33,6 +37,7 @@ export const HOME_POSTS: Project[] = [
     opensDialog: true,
     dialogType: 'blog',
     content: BLOG_POSTS.vakaiRedesign.content,
+    images: BLOG_POSTS.vakaiRedesign.images,
   },
   {
     title: 'Josh W. Comeau Student Showcase',
