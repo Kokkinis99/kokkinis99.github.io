@@ -2,6 +2,8 @@ export type BlogPostImage = {
   src: string;
   alt: string;
   caption: string;
+  width: number;
+  height: number;
 };
 
 export type BlogPost = {
@@ -65,11 +67,57 @@ export const BLOG_POSTS = {
         src: 'assets/images/vakai/before.jpg',
         alt: 'The old VaKAI landing page: a green "Get more from every digester" headline over a washed-out farm photo',
         caption: 'Before',
+        width: 1120,
+        height: 700,
       },
       {
-        src: 'assets/images/vakai/after.jpg',
-        alt: 'The redesigned VaKAI landing page: "Catch digester problems days before the lab does" over a dithered sunset, with the dashboard below',
-        caption: 'After',
+        src: 'assets/images/vakai/01-hero.jpg',
+        alt: 'The new hero: "Catch digester problems days before the lab does" over a dithered sunset sky, with a spec bar for plant size, early warning, access and setup',
+        caption: 'Hero',
+        width: 1600,
+        height: 794,
+      },
+      {
+        src: 'assets/images/vakai/02-dashboard.jpg',
+        alt: 'The product dashboard for Digester Line 1: gas production chart, methane content, an instability risk alert and four process readings, all labelled as example data',
+        caption: 'Dashboard',
+        width: 1600,
+        height: 657,
+      },
+      {
+        src: 'assets/images/vakai/03-gap.jpg',
+        alt: '"Eight days blind": a clickable strip of days 0 to 8 comparing what happens without and with VaKAI on each day',
+        caption: 'The eight-day gap',
+        width: 1600,
+        height: 512,
+      },
+      {
+        src: 'assets/images/vakai/04-platform.jpg',
+        alt: '"Act on day one, not day eight": a chart of gas production after a feedstock change, with and without VaKAI, and four capability columns',
+        caption: 'With VaKAI',
+        width: 1600,
+        height: 841,
+      },
+      {
+        src: 'assets/images/vakai/05-trust.jpg',
+        alt: '"Never controls your plant. Never leaves the EU." with four trust points: read-only, no new hardware, data stays in the EU, disconnect any time',
+        caption: 'Trust',
+        width: 1600,
+        height: 417,
+      },
+      {
+        src: 'assets/images/vakai/06-book.jpg',
+        alt: '"Tell us about your plant": the free trial form with name, email, capacity and country fields',
+        caption: 'Free trial',
+        width: 1600,
+        height: 783,
+      },
+      {
+        src: 'assets/images/vakai/07-footer.jpg',
+        alt: 'The footer with links and contact details, above a dithered photo of cows grazing near a barn',
+        caption: 'Footer',
+        width: 1600,
+        height: 1051,
       },
     ],
     content:`
