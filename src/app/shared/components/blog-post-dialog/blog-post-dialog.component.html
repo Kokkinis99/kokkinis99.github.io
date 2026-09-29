@@ -26,29 +26,32 @@
 
   <div class="panel-body">
     @if (images().length) {
-      <div class="images">
-        @for (image of images(); track image.src; let i = $index) {
-          <figure class="image">
-            <button
-              type="button"
-              class="thumb"
-              [attr.aria-label]="'View larger: ' + image.caption"
-              (mouseenter)="soundService.playHover(0.3)"
-              (click)="openImage(i, $event)"
-            >
-              <img
-                [src]="image.src"
-                [alt]="image.alt"
-                [width]="image.width"
-                [height]="image.height"
-                loading="lazy"
-                decoding="async"
-              />
-            </button>
-            <figcaption class="body-sm">{{ image.caption }}</figcaption>
-          </figure>
-        }
-      </div>
+      <figure class="stack-figure">
+        <button
+          type="button"
+          class="stack"
+          [attr.aria-label]="'View ' + images().length + ' before and after screenshots'"
+          (mouseenter)="soundService.playWoosh()"
+          (mousedown)="soundService.playPress()"
+          (click)="soundService.playRelease(); openImage(0, $event)"
+        >
+          @for (image of images(); track image.src; let i = $index) {
+            <img
+              class="stack-card"
+              [style.--i]="i"
+              [style.z-index]="images().length - i"
+              [src]="image.src"
+              [alt]="i === 0 ? image.alt : ''"
+              [width]="image.width"
+              [height]="image.height"
+              decoding="async"
+            />
+          }
+        </button>
+        <figcaption class="body-sm">
+          Before and after, {{ images().length }} sections. Click to flip through them.
+        </figcaption>
+      </figure>
     }
     <p class="body-sm content-text">{{ content() }}</p>
   </div>
