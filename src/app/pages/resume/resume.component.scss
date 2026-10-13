@@ -235,6 +235,10 @@
 // Print styles
 // ============================================================
 
+@page {
+  margin: 14mm 16mm;
+}
+
 @media print {
   .resume-header {
     display: none;
@@ -246,6 +250,13 @@
   }
 
   .resume-content {
+    // Any filter (even blur(0)) makes Chromium rasterize the element in the PDF
+    > * {
+      filter: none;
+      transform: none;
+      transition: none;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
