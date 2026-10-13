@@ -1,5 +1,5 @@
 # George Kokkinis
-**Frontend Engineer**
+**Design Engineer**
 
 hello@kokkin.is · kokkin.is · github.com/Kokkinis99 · Athens, Greece
 
@@ -7,87 +7,68 @@ hello@kokkin.is · kokkin.is · github.com/Kokkinis99 · Athens, Greece
 
 ## Summary
 
-Frontend Engineer with 5+ years building production UIs where technical depth and design craft meet. I design and build things end-to-end, from Figma to deployment. My stack is Angular at the current edge of the framework (signals, control flow, standalone components) and the reactive model maps cleanly to any modern framework. I build things that feel good to use.
+Design engineer with 5 years taking products from first sketch to production. I build things that feel good to use, and I care most about accessibility and motion. Most recently I owned [portal.covve.com](https://portal.covve.com), which I designed and built end to end.
 
 ---
 
 ## Experience
 
-### Covve - Frontend Engineer
-*Athens, Greece · 2021 - Present*
+### Covve
+*Athens, Greece · 2021 – 2026*
 
-Covve is the leading AI-powered business card scanning and CRM app, available on iOS and Android. As the sole frontend engineer on a cross-functional team, I own all UI implementation on the mobile app, and both design and implementation on the admin web portal.
+AI business card scanner and CRM, on iOS, Android and web.
 
-**Mobile app: Ionic/Angular**
+#### Product Owner, portal.covve.com · 2026
 
-- **Rebranding (2026):** Led the complete migration of the color and typography system, updating every component, modal, and screen for a full product rebrand
-- **Dark mode system:** Designed and implemented a full dark mode layer with CSS custom properties and a design token architecture that spans the entire app
-- **eCard (digital business card):** Migrated Covve's digital business card product from another app, adapting the data model, reactive form architecture, UI, and animations, including "Set as Primary" functionality and cross-device sync
-- **Onboarding & paywalls:** Ran UX research and led implementation of onboarding flows, upgrade screens, limited-time offer modals, and paywall logic. Research directly informed decisions that improved conversions
-- **Performance:** Replaced Lottie animations with hand-crafted SVG animations for finer control over timing and visual quality
+- Was given a new product to own as a solo project. Designed it in Figma and took it from first sketch to production
+- Built its component and motion library on ng-primitives, then open-sourced the toast system as Kōdon
 
-**Admin web portal: Angular 19 (2026)**
+#### Senior Engineer · 2024 – 2026
 
-- **Designed in Figma, built zero to production as sole engineer:** Two product surfaces, full CI/CD via GitHub Actions → Docker → Azure Kubernetes Service, Sentry with release tracking and structured log forwarding.
-- **Data-table primitive:** Core lead management surface built on TanStack Table v8, full-text search with inline highlights, CSV export with dynamic custom-field columns, column visibility, drag-to-reorder, and skeleton loading states.
-- **UI & animation library:** Built a reusable component and animation library on top of ng-primitives, later extracted into my open-source toast library, Kodon.
-- **Design system:** HSL neutral scale with light/dark mode and OKLCH upgrade via `@supports`.
-- **Performance pass:** OnPush change detection across the board, async animation bootstrap, parallel save pipelines.
+- Led the company rebrand across every screen of the mobile app
+- Ran UX research and used it to redesign onboarding and paywalls. Conversion went up
+- Mentored junior developers
 
-*Stack: Angular 19 · Ionic · TanStack Table · ng-primitives · Firebase · RxJS · Jest · Playwright · Sentry*
+#### Mid Engineer · 2022 – 2024
+
+- Moved Covve's digital business card from a separate app into the main one, rebuilding the data model, forms, UI and animations. Cards sync across devices
+- Designed and built dark mode on a token system that covers the whole app
+- Replaced Lottie with hand-made SVG animations so I could control the timing
+
+#### Junior Engineer, Covve CRM · 2021 – 2022
+
+- Built UI components and shipped product analytics
 
 ---
 
 ## Projects
 
+### Kōdon
+[kodon.kokkin.is](https://kodon.kokkin.is)
+
+Sonner-style toast library for Angular, animation-first and accessible. The ng-primitives author endorsed it, and I contribute to ng-primitives too.
+
 ### MoodTune
 [moodtune.kokkin.is](https://moodtune.kokkin.is)
 
-*Personal Project, Full-Stack Mobile App · Figma · Angular 18 · Firebase · Spotify API*
+A mood diary that turns how you feel into a Spotify playlist. I designed and built it alone. Its broken-streak animation was [featured in Josh Comeau's Whimsical Animations newsletter](https://www.joshwcomeau.com/email/wham-launch-009-student-showcase/).
 
-A mood diary that generates personalised Spotify playlists based on your emotional state. Designed end-to-end in Figma before implementation.
+### kokkin.is
 
-- **Full OAuth integration:** Implemented Spotify PKCE authentication flow with token refresh and deep link callback
-- **Mood-adaptive theming:** App-wide theme system (happy/sad/calm/angry) with radial gradients, CSS variables, and dynamic app icons that update per mood
-- **Spotify playlist generation:** Three recommendation modes (familiar/default/experimental) using mood-weighted audio features from the Reccobeats API, parsed and forwarded to Spotify to create personalised playlists
-- **Achievement system:** 50+ achievements across rarity tiers, tracked with incremental counters instead of full-scan queries
-- **Calendar & streaks:** Interactive mood calendar with streak tracking, broken-streak modals, and consecutive mood-week celebrations. Broken streak animation [featured in Josh Comeau's Whimsical Animations newsletter](https://www.joshwcomeau.com/email/wham-launch-009-student-showcase/)
-- **Statistics dashboard:** Mood frequency charts, emotional personality insights, and artist suggestion breakdowns
-- **Firebase backend:** Firestore with month-scoped partitioning, Cloud Functions for Spotify token exchange, Storage for entry images
-
-*Stack: Angular 18 · Ionic · Capacitor · Firebase · Firestore · Cloud Functions · Spotify API · TypeScript · SCSS*
-
-### Kodon
-[kodon.kokkin.is](https://kodon.kokkin.is)
-
-*Open Source, Angular Component Library*
-
-Sonner-inspired toast notification system for Angular, built on ng-primitives. Endorsed by the ng-primitives author. Composable, animation-first, fully accessible.
-
-### ng-primitives
-[github.com/ng-primitives/ng-primitives](https://github.com/ng-primitives/ng-primitives)
-
-*Open Source Contributor*
-
-Contributor to ng-primitives, a headless, composable primitives library for building accessible Angular UIs. Both Kodon and the Covve admin portal are built on it.
-
-### Portfolio · kokkin.is
-*Angular 19 · TypeScript · SCSS*
-
-A design engineering showcase built on Angular signals with a custom spring-physics animation system, interactive hover-to-expand components, live data integrations, dark/light mode, full keyboard accessibility and reduced-motion support.
+My portfolio, with a spring-physics motion system I wrote from scratch.
 
 ---
 
 ## Skills
 
-**Frontend**
-Angular · TypeScript · Ionic · RxJS · Firebase · JavaScript · HTML · SCSS
+**Engineering**
+Angular · TypeScript · JavaScript · Ionic · Capacitor · RxJS · TanStack · Firebase · HTML · SCSS
 
-**Design & UI**
-Figma · Design systems · CSS animations · OKLCH · Dark mode · Accessibility · Responsive UI
+**Tooling**
+Jest · Playwright · GitHub Actions · Docker · Sentry
 
-**Testing & Platform**
-Jest · Playwright · GitHub Actions · Docker · Capacitor · Sentry
+**Design**
+Figma · Design systems · Motion · Color (OKLCH) · Accessibility
 
 ---
 
@@ -102,8 +83,7 @@ National and Kapodistrian University of Athens · Department of Informatics
 
 | Course | Provider | Status |
 |---|---|---|
-| Whimsical Animations | Josh Comeau | Completed, work featured in launch newsletter |
-| InterfaceCraft | Josh Puckett | Completed, Founding Member |
+| Whimsical Animations | Josh Comeau | Completed, work featured in the launch newsletter |
+| InterfaceCraft | Josh Puckett | Completed, founding member |
 | Animations on the Web | Emil Kowalski | Completed |
-| CSS for JavaScript Developers | Josh Comeau | In Progress |
-| AI for Designers and Engineers | Emil Kowalski (aiforui.dev) | Early access tester |
+| AI for Designers and Engineers | Emil Kowalski (aiforui.dev) | Completed, early access tester |
