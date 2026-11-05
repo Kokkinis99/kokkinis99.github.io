@@ -16,12 +16,6 @@ export type Project = {
 
 export const HOME_PROJECTS: Project[] = [
   {
-    title: 'MoodTune',
-    description: 'A mood-based music recommendation app.',
-    href: 'https://moodtune.kokkin.is',
-    opensDialog: true,
-  },
-  {
     title: 'παρασκήνιο',
     description: 'A community space for theatre in Athens.',
     href: 'https://paraskinio.app',
@@ -32,6 +26,12 @@ export const HOME_PROJECTS: Project[] = [
       'A Sonner-inspired toast component for Angular, ' +
       'built on top of ng-primitives.',
     href: 'https://kodon.kokkin.is',
+  },
+  {
+    title: 'MoodTune',
+    description: 'A mood-based music recommendation app.',
+    href: 'https://moodtune.kokkin.is',
+    opensDialog: true,
   },
 ];
 
