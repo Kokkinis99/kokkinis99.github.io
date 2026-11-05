@@ -7,7 +7,7 @@ hello@kokkin.is · kokkin.is · github.com/Kokkinis99 · Athens, Greece
 
 ## Summary
 
-Design engineer with 5 years taking products from first sketch to production. I build things that feel good to use, and I care most about accessibility and motion. Most recently I owned [portal.covve.com](https://portal.covve.com), which I designed and built end to end.
+Design engineer with 5 years taking products from first sketch to production. I build things that feel good to use, and I care most about accessibility and motion. I designed and built [portal.covve.com](https://portal.covve.com) end to end, and now I'm building [paraskinio.app](https://paraskinio.app), a community space for theatre in Athens, on my own.
 
 ---
 
@@ -42,6 +42,11 @@ AI business card scanner and CRM, on iOS, Android and web.
 ---
 
 ## Projects
+
+### παρασκήνιο
+[paraskinio.app](https://paraskinio.app)
+
+A community space for theatre in Athens. I'm building it alone, from the brand and hand-drawn illustrations to the data model and the app. Angular 22 with server-side rendering so profiles and shows can be shared, on Firebase, with link previews drawn on the server.
 
 ### Kōdon
 [kodon.kokkin.is](https://kodon.kokkin.is)
