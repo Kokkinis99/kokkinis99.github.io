@@ -10,9 +10,105 @@ export type BlogPost = {
   title: string;
   content: string;
   images?: BlogPostImage[];
+  imagesCaption?: string;
 };
 
 export const BLOG_POSTS = {
+  paraskinio: {
+    title: 'Building παρασκήνιο',
+    imagesCaption: '8 screens, on desktop and phone. Click to flip through them.',
+    images: [
+      {
+        src: 'assets/images/paraskinio/paraskinio-landing.jpg',
+        alt: 'The παρασκήνιο landing page on desktop and phone: a big "Θέατρο για όλους" headline next to four hand-drawn stick figures in violet, lime, orange and pink, above a row of shows playing in Athens',
+        caption: 'Landing',
+        width: 1836,
+        height: 674,
+      },
+      {
+        src: 'assets/images/paraskinio/paraskinio-profile.jpg',
+        alt: 'A demo profile on desktop and phone with a frog avatar, 112 followers, four favourite shows as photos with their titles in white, a diary of shows seen with ratings and short reviews, and an about card',
+        caption: 'Profile',
+        width: 1836,
+        height: 674,
+      },
+      {
+        src: 'assets/images/paraskinio/paraskinio-home.jpg',
+        alt: 'The signed-in home page on desktop and phone: notices about likes and new followers, then a row of friends’ activity cards with show photos, star ratings and short reviews',
+        caption: 'Home',
+        width: 1836,
+        height: 674,
+      },
+      {
+        src: 'assets/images/paraskinio/paraskinio-production.jpg',
+        alt: 'A show page on desktop and phone for "Καλά, εσύ σκοτώθηκες νωρίς", with a production photo, rating and genre chips, and buttons to log it, add it to your watchlist or a list',
+        caption: 'Show page',
+        width: 1836,
+        height: 674,
+      },
+      {
+        src: 'assets/images/paraskinio/paraskinio-list.jpg',
+        alt: 'A list called "αν δεις μόνο τρία φέτος" on desktop and phone, under a hand-drawn orange sunset cover, with three show cards',
+        caption: 'List',
+        width: 1836,
+        height: 674,
+      },
+      {
+        src: 'assets/images/paraskinio/paraskinio-shows.jpg',
+        alt: 'The shows page on desktop and phone, with a sentence you edit to filter, "Θέλω να δω οτιδήποτε οπουδήποτε οποτεδήποτε", above a grid of show cards with stickers like "τελευταίες μέρες"',
+        caption: 'Shows',
+        width: 1836,
+        height: 674,
+      },
+      {
+        src: 'assets/images/paraskinio/paraskinio-settings.jpg',
+        alt: 'The settings page on desktop and phone, titled "ρυθμίσεις", with the avatar, name, handle, location and links fields, and hand-drawn crown and arrow marks around it',
+        caption: 'Settings',
+        width: 1836,
+        height: 674,
+      },
+      {
+        src: 'assets/images/paraskinio/paraskinio-share.jpg',
+        alt: 'The "ήμουν εκεί" share card: the show’s photo and title on the left, and on the right a quoted review, five stars, the theatre and date, and the reviewer’s handle',
+        caption: 'Share card',
+        width: 1836,
+        height: 674,
+      },
+    ],
+    content:`
+    παρασκήνιο means backstage in Greek, and it's what I'm building on my own right now.
+    It's a community space for theatre in Athens.
+    You keep a diary of the shows you've seen, follow other people, and see what's on before it closes.
+    A show you saw five years ago counts as much as the one you saw last night.
+
+    I think art is for everyone, so it should be fun, without making it any less.
+
+    So here's what went into it:
+
+    1. Nothing fancy:
+      No serifs, no gold, nothing that looks expensive.
+      The logo is a little ensemble of stick figures in violet, lime, pink and orange, with some riso-style grain on the fills.
+      I drew the illustrations and the 18 animal avatars myself.
+      All the copy is in Greek, lowercase and a bit playful.
+
+    2. A catalogue I can trust:
+      Users can't add shows. They send a request and I add it.
+      Every show is entered by hand from the theatre's own pages, and there are over 200 of them so far.
+      I also asked theatres if I could use their production photos, and several said yes.
+
+    3. Made to be shared:
+      Profiles and show pages render on the server, so a link looks right when you paste it in a chat.
+      The link previews and the "ήμουν εκεί" card are drawn on the server too.
+
+    4. What I left out:
+      No user counts anywhere, not even "be one of the first".
+      When you're logged in, the home page doesn't try to sell you anything.
+      It lists the shows on your watchlist that are about to close.
+
+    It's built with Angular 22 and Firebase, and it's live at paraskinio.app.
+    It's web first for now, and an iOS and Android app comes next.
+    `,
+  },
   aiSkills: {
     title: 'My favorite AI skills (so far...)',
     content:`

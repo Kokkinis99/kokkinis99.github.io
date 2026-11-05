@@ -30,7 +30,7 @@
         <button
           type="button"
           class="stack"
-          [attr.aria-label]="'View ' + images().length + ' before and after screenshots'"
+          [attr.aria-label]="imagesCaption() ? 'View ' + images().length + ' screenshots' : 'View ' + images().length + ' before and after screenshots'"
           (mouseenter)="soundService.playWoosh()"
           (mousedown)="soundService.playPress()"
           (click)="soundService.playRelease(); openImage(0, $event)"
@@ -49,7 +49,7 @@
           }
         </button>
         <figcaption class="body-sm">
-          Before and after, {{ images().length }} sections. Click to flip through them.
+          {{ imagesCaption() ?? 'Before and after, ' + images().length + ' sections. Click to flip through them.' }}
         </figcaption>
       </figure>
     }

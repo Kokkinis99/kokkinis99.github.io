@@ -29,6 +29,7 @@ export class BlogPostDialogComponent implements OnInit {
   readonly title = input.required<string>();
   readonly content = input.required<string>();
   readonly images = input<BlogPostImage[]>([]);
+  readonly imagesCaption = input<string>();
 
   readonly closed = output<void>();
   readonly closingStarted = output<void>();

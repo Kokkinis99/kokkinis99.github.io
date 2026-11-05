@@ -11,6 +11,7 @@ export type Project = {
   dialogType?: 'moodtune' | 'blog';
   content?: string;
   images?: BlogPostImage[];
+  imagesCaption?: string;
 };
 
 export const HOME_PROJECTS: Project[] = [
@@ -21,7 +22,12 @@ export const HOME_PROJECTS: Project[] = [
     opensDialog: true,
   },
   {
-    title: 'Kodon',
+    title: 'παρασκήνιο',
+    description: 'A community space for theatre in Athens.',
+    href: 'https://paraskinio.app',
+  },
+  {
+    title: 'Kōdon',
     description:
       'A Sonner-inspired toast component for Angular, ' +
       'built on top of ng-primitives.',
@@ -30,6 +36,16 @@ export const HOME_PROJECTS: Project[] = [
 ];
 
 export const HOME_POSTS: Project[] = [
+  {
+    title: BLOG_POSTS.paraskinio.title,
+    description: 'A community space for theatre in Athens',
+    href: 'https://kokkin.is/building-paraskinio',
+    opensDialog: true,
+    dialogType: 'blog',
+    content: BLOG_POSTS.paraskinio.content,
+    images: BLOG_POSTS.paraskinio.images,
+    imagesCaption: BLOG_POSTS.paraskinio.imagesCaption,
+  },
   {
     title: BLOG_POSTS.vakaiRedesign.title,
     description: 'Rebuilding a biogas landing page around one story',
