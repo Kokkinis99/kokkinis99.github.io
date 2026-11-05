@@ -26,14 +26,14 @@ export const BLOG_POSTS = {
         height: 674,
       },
       {
-        src: 'assets/images/paraskinio/paraskinio-profile.jpg',
-        alt: 'A demo profile on desktop and phone with a frog avatar, 112 followers, four favourite shows as photos with their titles in white, a diary of shows seen with ratings and short reviews, and an about card',
+        src: 'assets/images/paraskinio/paraskinio-profile-2.jpg',
+        alt: 'A demo profile on desktop and phone with a polar bear avatar, 112 followers, four favourite shows as photos with their titles in white, a diary of shows seen with ratings and short reviews, and an about card',
         caption: 'Profile',
         width: 1836,
         height: 674,
       },
       {
-        src: 'assets/images/paraskinio/paraskinio-home.jpg',
+        src: 'assets/images/paraskinio/paraskinio-home-2.jpg',
         alt: 'The signed-in home page on desktop and phone: notices about likes and new followers, then a row of friends’ activity cards with show photos, star ratings and short reviews',
         caption: 'Home',
         width: 1836,
@@ -47,7 +47,7 @@ export const BLOG_POSTS = {
         height: 674,
       },
       {
-        src: 'assets/images/paraskinio/paraskinio-list.jpg',
+        src: 'assets/images/paraskinio/paraskinio-list-2.jpg',
         alt: 'A list called "αν δεις μόνο τρία φέτος" on desktop and phone, under a hand-drawn orange sunset cover, with three show cards',
         caption: 'List',
         width: 1836,
@@ -61,14 +61,14 @@ export const BLOG_POSTS = {
         height: 674,
       },
       {
-        src: 'assets/images/paraskinio/paraskinio-settings.jpg',
+        src: 'assets/images/paraskinio/paraskinio-settings-2.jpg',
         alt: 'The settings page on desktop and phone, titled "ρυθμίσεις", with the avatar, name, handle, location and links fields, and hand-drawn crown and arrow marks around it',
         caption: 'Settings',
         width: 1836,
         height: 674,
       },
       {
-        src: 'assets/images/paraskinio/paraskinio-share.jpg',
+        src: 'assets/images/paraskinio/paraskinio-share-2.jpg',
         alt: 'The "ήμουν εκεί" share card: the show’s photo and title on the left, and on the right a quoted review, five stars, the theatre and date, and the reviewer’s handle',
         caption: 'Share card',
         width: 1836,
